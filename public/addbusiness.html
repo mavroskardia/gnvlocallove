@@ -39,10 +39,11 @@
 
     <div id="message"></div>
 
+    <script src="scripts.js"></script>
     <script>
 
       async function addBusiness() {
-        let db = firebase.firestore();
+        let db = getdb();
         let name = document.getElementById('name').value;
         let link = document.getElementById('link').value;
         // TODO: vet/sanitize links
