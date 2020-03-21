@@ -1,0 +1,22 @@
+{
+  "name": "gnvlocallove",
+  "version": "1.0.0",
+  "description": "GNV Local Love is a small site to support Gainesville during the pandemic",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mavroskardia/gnvlocallove.git"
+  },
+  "author": "amartin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mavroskardia/gnvlocallove/issues"
+  },
+  "homepage": "https://github.com/mavroskardia/gnvlocallove#readme",
+  "devDependencies": {
+    "firebase-tools": "^7.15.1"
+  }
+}

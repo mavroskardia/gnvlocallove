@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add your business | GNV Local Love</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.12.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.12.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <style media="screen">
+      @media (max-width: 600px) {
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add your business</h1>
+    <fieldset>
+      <label>
+        Name of your business
+        <input type="text" id="name" placeholder="Business name">
+      </label>
+      <label>
+        Where do your customers buy your giftcards?
+        <input type="text" id="link" placeholder="https://example.com">
+      </label>
+    </fieldset>
+    <button id="add_business_btn">Add Business</button>
+    <script>
+
+      async function addBusiness() {
+        let db = firebase.firestore();
+        let name = document.getElementById('name').value;
+        let link = document.getElementById('link').value;
+        // TODO: vet/sanitize links
+        let docref = await db.collection('businesses').add({
+          "name": name,
+          "url": link
+        });
+
+        console.log(`successfully wrote doc with id: ${docref.id}`);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('add_business_btn').addEventListener('click', addBusiness);
+      });
+
+    </script>
+  </body>
+</html>
