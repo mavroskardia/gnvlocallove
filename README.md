@@ -13,7 +13,9 @@ Steps:
 * Enter repo dir `cd gnvlocallove`
 * Install dependencies: `npm i`
 * Log into Firebase: `npx firebase login`
-* Initialize Firebase: `npx firebase init` (Add everything, ⚠️ DONT OVERWRITE ANYTHING ⚠️)
+* Initialize Firebase: `npx firebase init`
+  * when asked, add everything
+  * when asked, ⚠️ DONT OVERWRITE ANYTHING ⚠️
 * Start Firebase emulators (requires Java): `npx firebase emulators:start`
 * Navigate to `http://localhost:5000` if the site appears, you should be good.
 
@@ -22,4 +24,3 @@ Making and deploying changes:
 * Edit files in `public` folder
 * `npx firebase deploy`
 * (that's it)
-g

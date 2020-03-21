@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add your business | GNV Local Love</title>
+    <title>Add businesses | GNV Local Love</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.12.0/firebase-app.js"></script>
@@ -21,8 +21,11 @@
     </style>
   </head>
   <body>
-    <h1>Add your business</h1>
+
+    <a href="/">Home</a>
+
     <fieldset>
+      <legend>Add your business</legend>
       <label>
         Name of your business
         <input type="text" id="name" placeholder="Business name">
@@ -33,6 +36,9 @@
       </label>
     </fieldset>
     <button id="add_business_btn">Add Business</button>
+
+    <div id="message"></div>
+
     <script>
 
       async function addBusiness() {
@@ -45,7 +51,7 @@
           "url": link
         });
 
-        console.log(`successfully wrote doc with id: ${docref.id}`);
+        document.getElementById('message').innerHTML = `successfully added business`;
       }
 
       document.addEventListener('DOMContentLoaded', () => {
