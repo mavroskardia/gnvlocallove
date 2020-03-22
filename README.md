@@ -17,11 +17,11 @@ Steps:
   * when asked, add everything
   * when asked, ⚠️ DONT OVERWRITE ANYTHING ⚠️
 * Start Firebase emulators (requires Java): `npx firebase emulators:start`
-* Navigate to `http://localhost:5000` if the site appears, you should be good.
+* `npm run dev` should start a server at `http://localhost:1234` if the site appears, you should be good.
 
 Making and deploying changes:
 ---
-* Edit files in `public` or `src` folders
-* `npm run babel`
+* Edit files in `public` folder
+* `npm run build`
 * `npx firebase deploy`
 * (that's it)

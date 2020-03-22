@@ -3,17 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add businesses | GNV Local Love</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.12.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.12.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.12.0/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/7.12.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.12.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <title>Add businesses | GNV Loves Local</title>
 
     <style media="screen">
       @media (max-width: 600px) {
@@ -39,26 +29,7 @@
 
     <div id="message"></div>
 
-    <script src="lib/scripts.js"></script>
-    <script>
+    <script src="addbusiness.js"></script>
 
-      async function addBusiness() {
-        let db = getdb();
-        let name = document.getElementById('name').value;
-        let link = document.getElementById('link').value;
-        // TODO: vet/sanitize links
-        let docref = await db.collection('businesses').add({
-          "name": name,
-          "url": link
-        });
-
-        document.getElementById('message').innerHTML = `successfully added business`;
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('add_business_btn').addEventListener('click', addBusiness);
-      });
-
-    </script>
   </body>
 </html>
