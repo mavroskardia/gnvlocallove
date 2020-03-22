@@ -21,6 +21,7 @@ Steps:
 
 Making and deploying changes:
 ---
-* Edit files in `public` folder
+* Edit files in `public` or `src` folders
+* `npm run babel`
 * `npx firebase deploy`
 * (that's it)
