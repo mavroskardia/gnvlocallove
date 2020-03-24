@@ -14,18 +14,20 @@
 
     <a href="/">Home</a>
 
-    <fieldset>
-      <legend>Add your business</legend>
-      <label>
-        Name of your business
-        <input type="text" id="name" placeholder="Business name">
-      </label>
-      <label>
-        Where do your customers buy your giftcards?
-        <input type="text" id="link" placeholder="https://example.com">
-      </label>
-    </fieldset>
-    <button id="add_business_btn">Add Business</button>
+    <section>
+      <h2>Add your business</h2>
+      <input id="search" type="text" placeholder="Enter your business name here">
+      <ul id="results">
+        <span>Please search above to see results.</span>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Add a link to your giftcards</h2>
+      <input id="gclink" type="url" placeholder="https://example.com">
+    </section>
+
+    <button id="add_business_btn">Add your business</button>
 
     <div id="message"></div>
 

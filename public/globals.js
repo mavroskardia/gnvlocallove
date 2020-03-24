@@ -22,3 +22,7 @@ export function getdb() {
   }
   return db;
 }
+
+export const placesConfig = {
+  apiKey: "AIzaSyC0l103C1poaeNG-wmqWgkTxe0RT-vEnms"
+}
