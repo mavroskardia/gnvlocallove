@@ -5,7 +5,8 @@
 
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import {firebaseConfig, getdb, placesConfig} from './globals';
+import {firebaseConfig, getdb} from './globals';
+import './biz-card.js';
 
 async function main() {
   firebase.initializeApp(firebaseConfig);
@@ -17,13 +18,16 @@ async function main() {
 
   qs.forEach(doc => {
     let bizdata = doc.data();
+    debugger;
     listelt.innerHTML += `
     <li>
-      <a href="${bizdata.gclink}">
-        <img src="${bizdata.icon}" />
-        <strong>${bizdata.name}</strong>
-        <small>${bizdata.formatted_address}</small>
-      </a>
+      <biz-card
+        name="${bizdata.name}"
+        address="${bizdata.address}"
+        photo="${bizdata.photo}"
+        icon="${bizdata.icon}"
+        gclink="${bizdata.gclink}">
+      </biz-card>
     </li>`;
   });
 

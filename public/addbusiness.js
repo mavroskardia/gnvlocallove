@@ -1,29 +1,25 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import {getdb, firebaseConfig, placesConfig} from './globals';
+import {getdb, firebaseConfig} from './globals';
 
 async function lookup(e) {
   let text = e.target.value;
   // wait until they've typed enough to be useful
   if (text.length < 3) return;
 
-  let elt = document.getElementById('map');
-  let gnv = new google.maps.LatLng(29.6515, -82.3248);
-  let map = new google.maps.Map(elt, {center:gnv, zoom:15});
-  let service = new google.maps.places.PlacesService(map);
+  let service = new google.maps.places.AutocompleteService();
   let request = {
-    query: text,
-    fields: ['formatted_address','icon','name','photos','place_id']
+    input: text,
+    location: new google.maps.LatLng(29.6515, -82.3248),
+    radius: 10,
   };
 
-  service.findPlaceFromQuery(request, (result, status) => {
-
+  service.getPlacePredictions(request, (result, status) => {
     let elt = document.getElementById('results');
-    elt.innerHTML = result.map(c => `
+    elt.innerHTML = result.filter(c=>c.types.indexOf('food') != -1)
+    .map(c => `
       <li data-bag="${encodeURI(JSON.stringify(c))}">
-          <img src="${c.icon}">
-          <strong>${c.name}</strong>
-          <small>${c.formatted_address}</small>
+          <span>${c.description}</span>
       </li>`).join();
 
     document.querySelectorAll('#results li').forEach(li => {
@@ -48,18 +44,46 @@ async function addBusiness() {
   let db = getdb();
 
   let elt = document.querySelector('#results .chosen');
-  let data = JSON.parse(decodeURI(elt.dataset.bag));
-  data['gclink'] = document.getElementById('gclink').value;
+  let predata = JSON.parse(decodeURI(elt.dataset.bag));
+  let data = await build_data(predata);
 
-  // TODO: vet/sanitize links
   await db.collection('businesses').add(data);
 
   postMessage('added business successfully');
 
 }
 
+async function build_data(places_data) {
+  return new Promise(resolve => {
+    let gnv = new google.maps.LatLng(29.6515, -82.3248);
+    let map = new google.maps.Map(document.getElementById('map'), {
+      center: gnv, zoom: 15
+    });
+    let service = new google.maps.places.PlacesService(map);
+
+    service.getDetails({
+      placeId: places_data.place_id,
+      fields: ['formatted_address', 'icon', 'name', 'photo']
+    }, async (result, status) => {
+      let photoResponse = await fetch(result.photos[0].getUrl());
+      let photoData = await photoResponse.text();
+      debugger;
+      // TODO: vet/sanitize links
+      let data = {
+        name: result.name,
+        address: result.formatted_address,
+        place_id: places_data.place_id,
+        icon: result.icon,
+        photo: photoData,
+        gclink: document.getElementById('gclink').value
+      };
+      resolve(data);
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    firebase.initializeApp(firebaseConfig);
-    document.getElementById('add_business_btn').addEventListener('click', addBusiness);
-    document.getElementById('search').addEventListener('input', lookup);
+  firebase.initializeApp(firebaseConfig);
+  document.getElementById('add_business_btn').addEventListener('click', addBusiness);
+  document.getElementById('search').addEventListener('input', lookup);
 });
