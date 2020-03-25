@@ -1,34 +1,36 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GNV Loves Local</title>
-
-    <style media="screen">
-      @media (max-width: 600px) {
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="../public/style.css">
   </head>
   <body>
-
+  <header role="banner">
+    <a href="index.html" title="home">
+      <img src="../public/pizza.png" alt="Pizza logo">
+    </a>
+    <h1>GVN LOVES LOCAL</h1>
+    <h2>
+      Our favorite Gainesville area restaurant might close forever. 
+      Help save them.
+     </h2>
+    <input type="search" id="resturant-search" name="resturant-search" aria-label="Search for your favorite restaurants">
+  </header>
     <a href="addbusiness.html">Add Business</a>
-
     <section>
       <h2>Search</h2>
     </section>
-
     <section>
       <h2>Categories</h2>
     </section>
-
     <section>
       <h2>Results</h2>
       <ul id="businesses">Loading...</ul>
     </section>
-
-
     <script src="index.js"></script>
-
   </body>
 </html>
