@@ -18,7 +18,7 @@ async function main() {
 
   qs.forEach(doc => {
     let bizdata = doc.data();
-    debugger;
+    
     listelt.innerHTML += `
     <li>
       <biz-card

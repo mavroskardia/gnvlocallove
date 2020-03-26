@@ -49,7 +49,7 @@ async function addBusiness() {
 
   await db.collection('businesses').add(data);
 
-  postMessage('added business successfully');
+  postMessage('Business successfully added.');
 
 }
 

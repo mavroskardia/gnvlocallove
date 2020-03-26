@@ -4,36 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add businesses | GNV Loves Local</title>
-
-    <style media="screen">
-      @media (max-width: 600px) {
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
   </head>
-  <body>
-
-    <a href="/">Home</a>
-
-    <section>
-      <h2>Add your business</h2>
-      <input id="search" type="text" placeholder="Enter your business name here">
-      <ul id="results">
-        <span>Please search above to see results.</span>
+  <body class="bg-pattern">
+    <nav role="navigation">
+      <a href="index.html">Home</a>
+    </nav>
+    <a href="index.html" title="home" class="logo">
+      <img src="pizza.png" alt="Pizza logo">
+    </a>
+    <main role="main" class="add-business card">
+      <div id="message"></div>
+      <h2><i>1</i>Add your business</h2>
+      <input id="search" type="text" placeholder="Start typing to find your business">
+      <ul id="results" class="results">
+        <li class="empty-set">Please search above to see results.</li>
       </ul>
-    </section>
-
-    <section>
-      <h2>Add a link to your giftcards</h2>
+      <h2><i>2</i>Add a link to your giftcards</h2>
       <input id="gclink" type="url" placeholder="https://example.com">
-    </section>
-
-    <button id="add_business_btn">Add your business</button>
-
-    <div id="message"></div>
-    <div id="map"></div>
-
+      <button id="add_business_btn">Add your business</button>
+      <div id="map"></div>
+    </main>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVnJZHM-bflrKN-iDt8AE1016JYKk6dws&libraries=places"></script>
     <script src="addbusiness.js"></script>
-
   </body>
 </html>
