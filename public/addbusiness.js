@@ -74,7 +74,7 @@ async function build_data(places_data) {
         address: result.formatted_address,
         place_id: places_data.place_id,
         icon: result.icon,
-        photo: photoDataresult.photos[0].getUrl({
+        photo: result.photos[0].getUrl({
           maxWidth: 100, maxHeight: 100
         }),
         gclink: document.getElementById('gclink').value
