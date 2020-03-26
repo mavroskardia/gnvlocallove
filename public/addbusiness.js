@@ -21,7 +21,7 @@ async function lookup(e) {
     .map(c => `
       <li data-bag="${encodeURI(JSON.stringify(c))}">
           <span>${c.description}</span>
-      </li>`).join();
+      </li>`).join('');
 
     document.querySelectorAll('#results li').forEach(li => {
       li.addEventListener('click', choose);
