@@ -67,7 +67,6 @@ async function build_data(places_data) {
     }, async (result, status) => {
       let photoResponse = await fetch(result.photos[0].getUrl());
       let photoData = await photoResponse.text();
-      debugger;
       // TODO: vet/sanitize links
       let data = {
         name: result.name,
