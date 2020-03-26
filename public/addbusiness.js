@@ -65,8 +65,9 @@ async function build_data(places_data) {
       placeId: places_data.place_id,
       fields: ['formatted_address', 'icon', 'name', 'photo']
     }, async (result, status) => {
-      let photoResponse = await fetch(result.photos[0].getUrl());
-      let photoData = await photoResponse.text();
+      let photoData = result.photos[0].getUrl({
+        maxWidth: 100, maxHeight: 100
+      });
       // TODO: vet/sanitize links
       let data = {
         name: result.name,
