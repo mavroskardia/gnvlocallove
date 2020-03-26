@@ -8,7 +8,25 @@ import 'firebase/firestore';
 import {firebaseConfig, getdb} from './globals';
 import './biz-card.js';
 
+async function search(e) {
+
+  let text = e.target.value;
+
+  // reset any hidden
+  document.querySelectorAll('#businesses > li').forEach(li => {
+    li.classList.remove('hidden');
+  });
+
+  // hide those that don't match text
+  Array.from(document.querySelectorAll('#businesses biz-card'))
+    .filter(bc => bc.name.toLowerCase().indexOf(text) === -1)
+    .forEach(bc => bc.parentElement.classList.add('hidden'));
+
+}
+
 async function main() {
+  document.getElementById('restaurant-search').addEventListener('input', search);
+
   firebase.initializeApp(firebaseConfig);
   let db = getdb();
   let qs = await db.collection('businesses').get();
@@ -18,7 +36,6 @@ async function main() {
 
   qs.forEach(doc => {
     let bizdata = doc.data();
-    
     listelt.innerHTML += `
     <li>
       <biz-card
