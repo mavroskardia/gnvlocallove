@@ -38,6 +38,9 @@ function postMessage(text) {
 function choose(e) {
   let elt = e.target;
   while (elt.nodeName !== 'LI') elt = elt.parentElement;
+
+  document.querySelectorAll('#results > li').forEach(li => li.classList.remove('chosen'));
+
   elt.classList.add('chosen');
 }
 
