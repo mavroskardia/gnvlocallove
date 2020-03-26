@@ -10,7 +10,7 @@ Variables
 	--duration: .25s;
 	--base-unit: 16px;
     --sans-font-family: 'Roboto',sans-serif;
-    
+
 	--yellow: #FFD445;
 	--midnight: #1E2E3F;
 	--blue: #0074E8;
@@ -27,7 +27,7 @@ Variables
 General
 -----------------------------------------------------*/
 
-::-moz-selection { 
+::-moz-selection {
 	color: var(--midnight);
 	background: var(--light-gold);
 }
@@ -41,8 +41,8 @@ html {
 	box-sizing: border-box;
 }
 
-*, 
-*:before, 
+*,
+*:before,
 *:after {
 	box-sizing: inherit;
 }
@@ -247,6 +247,7 @@ input[type="search"]:focus {
 	border: none;
 }
 
+.hidden { display: none; }
 
 /* ---------------------------------------------------
 ::Grid

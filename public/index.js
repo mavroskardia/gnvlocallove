@@ -10,7 +10,7 @@ import './biz-card.js';
 
 async function search(e) {
 
-  let text = e.target.value;
+  let text = e.target.value.toLowerCase();
 
   // reset any hidden
   document.querySelectorAll('#businesses > li').forEach(li => {
@@ -25,7 +25,7 @@ async function search(e) {
 }
 
 async function main() {
-  document.getElementById('restaurant-search').addEventListener('input', search);
+  document.getElementById('restaurantsearch').addEventListener('input', search);
 
   firebase.initializeApp(firebaseConfig);
   let db = getdb();
