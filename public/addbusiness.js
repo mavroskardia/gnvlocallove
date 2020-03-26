@@ -3,6 +3,7 @@ import 'firebase/firestore';
 import {getdb, firebaseConfig} from './globals';
 
 async function lookup(e) {
+
   let text = e.target.value;
   // wait until they've typed enough to be useful
   if (text.length < 3) return;
@@ -41,8 +42,8 @@ function choose(e) {
 }
 
 async function addBusiness() {
-  let db = getdb();
 
+  let db = getdb();
   let elt = document.querySelector('#results .chosen');
   let predata = JSON.parse(decodeURI(elt.dataset.bag));
   let data = await build_data(predata);
@@ -54,36 +55,39 @@ async function addBusiness() {
 }
 
 async function build_data(places_data) {
-  return new Promise(resolve => {
-    let gnv = new google.maps.LatLng(29.6515, -82.3248);
-    let map = new google.maps.Map(document.getElementById('map'), {
-      center: gnv, zoom: 15
-    });
-    let service = new google.maps.places.PlacesService(map);
 
-    service.getDetails({
+  return new Promise(resolve => {
+
+    let gnv = new google.maps.LatLng(29.6515, -82.3248);
+    let mapParams = { center: gnv, zoom: 15 };
+    let map = new google.maps.Map(document.getElementById('map'), mapParams);
+    let service = new google.maps.places.PlacesService(map);
+    let request = {
       placeId: places_data.place_id,
       fields: ['formatted_address', 'icon', 'name', 'photo']
-    }, async (result, status) => {
-      let photoData = result.photos[0].getUrl({
-        maxWidth: 100, maxHeight: 100
-      });
-      // TODO: vet/sanitize links
-      let data = {
+    };
+
+    service.getDetails(request, async (result, status) => {
+      // TODO: vet/sanitize links?
+      resolve({
         name: result.name,
         address: result.formatted_address,
         place_id: places_data.place_id,
         icon: result.icon,
-        photo: photoData,
+        photo: photoDataresult.photos[0].getUrl({
+          maxWidth: 100, maxHeight: 100
+        }),
         gclink: document.getElementById('gclink').value
-      };
-      resolve(data);
+      });
+
     });
   });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
   firebase.initializeApp(firebaseConfig);
   document.getElementById('add_business_btn').addEventListener('click', addBusiness);
   document.getElementById('search').addEventListener('input', lookup);
+
 });
