@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import {getdb, firebaseConfig} from './globals';
+import './counting-text.js';
 
 async function lookup(e) {
 
@@ -78,7 +79,13 @@ async function build_data(places_data) {
         place_id: places_data.place_id,
         icon: result.icon,
         photo: result.photos[0].getUrl({maxWidth:600}),
-        gclink: document.getElementById('gclink').value
+        gclink: document.getElementById('gclink').value,
+        ubereatslink: document.getElementById('ubereatslink').value,
+        doordashlink: document.getElementById('doordashlink').value,
+        bitesquadlink: document.getElementById('bitesquadlink').value,
+        three52deliverylink: document.getElementById('three52deliverylink').value,
+        cflink: document.getElementById('cflink').value,
+        blurb: document.getElementById('blurb').value
       });
 
     });
