@@ -67,6 +67,14 @@ async function addBusiness() {
 
   postMessage('Business successfully added.');
 
+  clear();
+
+}
+
+function clear() {
+  document.querySelectorAll('input').forEach(i => i.value = '');
+  document.querySelectorAll('counting-text').forEach(ct => ct.value = '');
+  document.getElementById('search').focus();
 }
 
 async function build_data(places_data) {
@@ -108,5 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
   firebase.initializeApp(firebaseConfig);
   document.getElementById('add_business_btn').addEventListener('click', addBusiness);
   document.getElementById('search').addEventListener('input', lookup);
+  document.getElementById('search').focus();
 
 });

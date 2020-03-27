@@ -9,11 +9,18 @@ class CountingText extends LitElement {
 
   static get properties() {
     return {
-      value: {type: String},
+      value: {type: String, reflect: true},
       maxlength: {type: Number},
       placeholder: {type: String},
       used: {type: Number}
     }
+  }
+
+  attributeChangedCallback(name, oldval, newval) {
+    if (name === 'value') {
+      this.shadowRoot.getElementById('thetext').value = newval;
+    }
+    super.attributeChangedCallback(name, oldval, newval);
   }
 
   static get styles() {
@@ -37,8 +44,8 @@ class CountingText extends LitElement {
       	border: 1px solid var(--specter-300);
 	      padding: var(--base-unit);
 	      border-radius: calc(var(--base-unit)*2);
-        font-size: 16px;
-        font-family: "Roboto", sans-serif;
+        font-size: var(--base-unit);
+        font-family: var(--sans-font-family);
       }
     `;
   }
