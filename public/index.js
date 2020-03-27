@@ -25,15 +25,15 @@ async function search(e) {
 }
 
 async function main() {
+
   document.getElementById('restaurantsearch').addEventListener('input', search);
 
   firebase.initializeApp(firebaseConfig);
+
   let db = getdb();
   let qs = await db.collection('businesses').get();
-
   let listelt = document.getElementById('businesses');
 
-  // TODO: change to empty set if there are no results.
   if (qs.size === 0) {
     listelt.innerHTML = '<div class="empty-set">No businesses yet</div>';
     return;
