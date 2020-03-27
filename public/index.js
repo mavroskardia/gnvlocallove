@@ -30,8 +30,10 @@ async function main() {
   firebase.initializeApp(firebaseConfig);
   let db = getdb();
   let qs = await db.collection('businesses').get();
+
   let listelt = document.getElementById('businesses');
 
+  // TODO: change to empty set if there are no results.
   listelt.innerHTML = '';
 
   qs.forEach(doc => {

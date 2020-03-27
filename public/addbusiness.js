@@ -36,13 +36,24 @@ function postMessage(text) {
   document.getElementById('message').innerHTML = text;
 }
 
-function choose(e) {
+async function choose(e) {
+
   let elt = e.target;
   while (elt.nodeName !== 'LI') elt = elt.parentElement;
 
   document.querySelectorAll('#results > li').forEach(li => li.classList.remove('chosen'));
 
   elt.classList.add('chosen');
+
+  // warn them if this placeId already exists in our db
+  let predata = JSON.parse(decodeURI(elt.dataset.bag));
+  let db = getdb();
+  let qs = await db.collection('businesses').where('place_id', '==', predata.place_id).get();
+
+  if (qs.size > 0) {
+    postMessage('Warning: this business already listed!');
+  }
+
 }
 
 async function addBusiness() {
