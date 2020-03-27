@@ -214,7 +214,7 @@ input[type="search"]:focus {
 -----------------------------------------------------*/
 
 main.businesses {
-	max-width: 1200px;
+	max-width: 1440px;
 }
 
 main.businesses > ul {
@@ -226,12 +226,12 @@ main.businesses > ul {
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	grid-auto-rows: auto;
 	grid-gap: calc(var(--base-unit)*2);
-	/* align-items: center; */
 	justify-items: center;
 }
 
 main.businesses > ul li.card {
 	overflow: hidden;
+	max-width: 600px;
 }
 
 
