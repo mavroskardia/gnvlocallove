@@ -9,15 +9,15 @@ class BizCard extends LitElement {
       }
 
       div.photo {
-        width:380px;
+        width: 380px;
         height: 160px;
         background-repeat: no-repeat;
         background-size: cover;
       }
 
       h3 {
-        font-wight: normal;
-        padding 16px;
+        font-weight: normal;
+        padding: 16px;
         text-align: center;
       }
     `;
