@@ -34,6 +34,11 @@ async function main() {
   let listelt = document.getElementById('businesses');
 
   // TODO: change to empty set if there are no results.
+  if (qs.size === 0) {
+    listelt.innerHTML = '<div class="empty-set">No businesses yet</div>';
+    return;
+  }
+
   listelt.innerHTML = '';
 
   qs.forEach(doc => {
@@ -45,7 +50,13 @@ async function main() {
         address="${bizdata.address}"
         photo="${bizdata.photo}"
         icon="${bizdata.icon}"
-        gclink="${bizdata.gclink}">
+        gclink="${bizdata.gclink}"
+        ubereatslink="${bizdata.ubereatslink}"
+        doordashlink="${bizdata.doordashlink}"
+        three52deliverylink="${bizdata.three52deliverylink}"
+        bitesquadlink="${bizdata.bitesquadlink}"
+        cflink="${bizdata.cflink}"
+        blurb="${bizdata.blurb}">
       </biz-card>
     </li>`;
   });
