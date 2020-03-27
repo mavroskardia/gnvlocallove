@@ -336,6 +336,18 @@ main.businesses > ul li.card {
 ::Misc
 -----------------------------------------------------*/
 
+a.feedback {
+	display: inline-block;
+	position: fixed;
+	bottom: var(--base-unit);
+	right: var(--base-unit);
+	transition: all var(--duration) ease-in-out;
+}
+
+a.feedback:hover {
+	transform: translate(0, -8px);
+}
+
 .card {
 	background: #fff;
 	border-radius: 24px;
