@@ -5,14 +5,20 @@ class BizCard extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: inline-block;
-        background-color: #f7f7f7;
+        display: block;
       }
 
-      div {
-        border: solid 1px #ccc;
-        border-radius: 4px;
-        box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+      div.photo {
+        width:380px;
+        height: 160px;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      h3 {
+        font-wight: normal;
+        padding 16px;
+        text-align: center;
       }
     `;
   }
@@ -20,8 +26,8 @@ class BizCard extends LitElement {
   render() {
     return html`
       <div>
-        <img src="${this.photo}" width="100">
-        <span>${this.name}</span>
+        <div class="photo" style="background-image: url(${this.photo});"></div>
+        <h3>${this.name}</h3>
       </div>
     `;
   }
