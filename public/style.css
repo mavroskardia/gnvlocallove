@@ -194,7 +194,7 @@ input[type="search"] {
 	margin-left: auto;
 	margin-right: auto;
 	height: 80px;
-	width: 100%;
+	width: 98%;
 	max-width: 900px;
 	border: 1px solid var(--specter-300);
 	border-radius: 80px;
@@ -223,7 +223,7 @@ main.businesses > ul {
 	list-style: none;
 	display: grid;
 	grid-gap: var(--base-unit);
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 	grid-auto-rows: auto;
 	grid-gap: calc(var(--base-unit)*2);
 	justify-items: center;
@@ -231,7 +231,20 @@ main.businesses > ul {
 
 main.businesses > ul li.card {
 	overflow: hidden;
-	max-width: 600px;
+	width: 100%;
+	min-width: 380px;
+}
+
+@media ( max-width: 900px ) {
+
+	main.businesses > ul {
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));	
+	}
+
+	main.businesses > ul li.card {
+		min-width: 300px;
+	}
+	
 }
 
 
