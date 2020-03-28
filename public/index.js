@@ -35,7 +35,7 @@ async function main() {
   let listelt = document.getElementById('businesses');
 
   if (qs.size === 0) {
-    listelt.innerHTML = '<div class="empty-set">No businesses yet</div>';
+    listelt.innerHTML = '<div class="alert alert--info">No businesses yet. Add a <a href="addbusiness.html">new business</a>?</div>';
     return;
   }
 
