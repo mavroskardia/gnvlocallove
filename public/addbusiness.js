@@ -94,11 +94,10 @@ async function build_data(places_data) {
     let service = new google.maps.places.PlacesService(map);
     let request = {
       placeId: places_data.place_id,
-      fields: ['formatted_address', 'icon', 'name', 'photo']
+      fields: ['formatted_address', 'icon', 'name', 'photo', 'website']
     };
 
     service.getDetails(request, async (result, status) => {
-      // TODO: vet/sanitize links?
       resolve({
         name: result.name,
         address: result.formatted_address,
@@ -111,7 +110,8 @@ async function build_data(places_data) {
         bitesquadlink: getLink('bitesquadlink'),
         three52deliverylink: getLink('three52deliverylink'),
         cflink: getLink('cflink'),
-        blurb: document.getElementById('blurb').value
+        blurb: document.getElementById('blurb').value,
+        website: result.website
       });
 
     });

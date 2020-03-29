@@ -56,7 +56,8 @@ async function main() {
         three52deliverylink="${bizdata.three52deliverylink}"
         bitesquadlink="${bizdata.bitesquadlink}"
         cflink="${bizdata.cflink}"
-        blurb="${bizdata.blurb}">
+        blurb="${bizdata.blurb}"
+        website=${bizdata.website}">
       </biz-card>
     </li>`;
   });

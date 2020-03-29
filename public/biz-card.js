@@ -105,7 +105,8 @@ class BizCard extends LitElement {
       bitesquadlink: { type: String },
       three52deliverylink: { type: String },
       cflink: { type: String },
-      blurb: { type: String }
+      blurb: { type: String },
+      website: { type: String }
     }
   }
 }
