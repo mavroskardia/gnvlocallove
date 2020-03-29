@@ -29,20 +29,34 @@ class CountingText extends LitElement {
         display: block;
       }
 
-      div { position: relative; }
+      fieldset { 
+        position: relative; 
+        margin: 0;
+        border: 0;
+      }
+
       small {
         position: absolute;
-        bottom: 12px;
-        left: var(--base-unit);
-        color: #ccc;
-        font-style: oblique;
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto;
+        bottom: 0;
+        display: inline-block;
+        padding: calc(var(--base-unit)/2);
+        background: #fff;
+        border: 1px solid var(--specter-100);
+        box-shadow: var(--shadow);
+        border-radius: 32px;
+        max-width: 64px;
+        text-align: center;
       }
 
       textarea {
         width: calc(100% - var(--base-unit)*2);
         background: var(--specter-100);
       	border: 1px solid var(--specter-300);
-	      padding: var(--base-unit);
+	      padding: var(--base-unit) var(--base-unit) calc(var(--base-unit)*2) var(--base-unit);
 	      border-radius: calc(var(--base-unit)*2);
         font-size: var(--base-unit);
         font-family: var(--sans-font-family);
@@ -52,13 +66,13 @@ class CountingText extends LitElement {
 
   render() {
     return html`
-      <div>
+      <fieldset>
+        <small>${this.used} / ${this.maxlength}</small>
         <textarea id="thetext"
           maxlength="${this.maxlength}"
           placeholder="${this.placeholder}"
           @input="${this.updateCount}"></textarea>
-        <small>${this.used} / ${this.maxlength}</small>
-      </div>
+      </fieldset>
     `;
   }
 

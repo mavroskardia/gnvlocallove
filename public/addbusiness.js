@@ -21,7 +21,7 @@ async function lookup(e) {
     elt.innerHTML = result.filter(c=>c.types.indexOf('food') != -1)
     .map(c => `
       <li data-bag="${encodeURI(JSON.stringify(c))}">
-          <span>${c.description}</span>
+        ${c.description}
       </li>`).join('');
 
     document.querySelectorAll('#results li').forEach(li => {
@@ -38,12 +38,17 @@ function postMessage(text) {
 
 async function choose(e) {
 
+  let search = document.getElementById('search');
   let elt = e.target;
+
   while (elt.nodeName !== 'LI') elt = elt.parentElement;
 
   document.querySelectorAll('#results > li').forEach(li => li.classList.remove('chosen'));
 
   elt.classList.add('chosen');
+
+  //Update the search box to reflect the selected business
+  search.value = elt.innerHTML.trim();
 
   // warn them if this placeId already exists in our db
   let predata = JSON.parse(decodeURI(elt.dataset.bag));

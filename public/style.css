@@ -104,24 +104,21 @@ h2,
 h3 {
 	font-family: var(--serif-font-family);
 	line-height: 1.2;
-	font-weight: 300;
+	font-weight: 400;
 	padding: 0;
 	margin: 0;
 }
 
 h1 {
 	font-size: 3.2rem;
-	font-weight: 500;
 }
 
 h2 {
 	font-size: 2.4rem;
-	font-weight: 500;
 }
 
 h3 {
 	font-size: 1.8rem;
-	font-weight: 500;
 }
 
 /* ---------------------------------------------------
@@ -148,14 +145,9 @@ nav a {
 
 main {
 	margin: 0 auto;
-	max-width: 900px;
 	padding: calc(var(--base-unit)*4) var(--base-unit);
+	max-width: 900px;
 }
-
-footer {
-
-}
-
 
 /* ---------------------------------------------------
 ::Hero
@@ -194,7 +186,7 @@ input[type="search"] {
 	margin-left: auto;
 	margin-right: auto;
 	height: 80px;
-	width: 98%;
+	width: 95%;
 	max-width: 900px;
 	border: 1px solid var(--specter-300);
 	border-radius: 80px;
@@ -232,6 +224,7 @@ main.businesses > ul {
 main.businesses > ul li.card {
 	overflow: hidden;
 	width: 100%;
+	max-width: 600px;
 	min-width: 380px;
 }
 
@@ -244,25 +237,106 @@ main.businesses > ul li.card {
 	main.businesses > ul li.card {
 		min-width: 300px;
 	}
-	
-}
 
+}
 
 /* ---------------------------------------------------
 ::Add new business
 -----------------------------------------------------*/
 
 .add-business {
-	margin-top: calc(var(--base-unit)*2);
-	padding: calc(var(--base-unit)*2);
+	margin: calc(var(--base-unit)*2) auto;
+	padding: calc(var(--base-unit)*2); 
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: var(--base-unit);
 }
 
-.add-business h2 {
+.add-business h1 {
+	text-align: center;
+}
+
+.add-business .col--left {
+	grid-column: 1 / 5; 
+	grid-row: auto; 
+}
+
+.add-business .col--right {
+	grid-column: 5 / 9; 
+	grid-row: auto; 
+}
+
+.add-business .col--full {
+	grid-column: 1 / -1; 
+	grid-row: auto; 
+}
+
+.add-business fieldset {
+	margin-top: var(--base-unit);
+}
+
+.add-business ul.results {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.add-business ul.results li {
+	cursor: pointer;
+	background: #fff;
+	margin: 0;
+	padding: var(--base-unit) calc(var(--base-unit)*2) var(--base-unit) var(--base-unit);
+	border-bottom: 1px solid var(--specter-300);
+	box-shadow: var(--shadow-long);
+}
+
+.add-business ul.results li:first-child {
+	border-top-left-radius: calc(var(--base-unit)/4);
+	border-top-right-radius: calc(var(--base-unit)/4);
+}
+
+.add-business ul.results li:last-child {
+	border-bottom-left-radius: calc(var(--base-unit)/4);
+	border-bottom-right-radius: calc(var(--base-unit)/4);
+}
+
+.add-business ul.results li:hover,
+.add-business ul.results li:nth-child(odd):hover,
+.add-business ul.results li.chosen {
+	color: #fff;
+	background: var(--emerald);
+}
+
+.add-business ul.results li.chosen {
+	background: var(--emerald) url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .125C18.55.125 23.875 5.45 23.875 12S18.55 23.875 12 23.875.125 18.55.125 12 5.45.125 12 .125zm0 1.45C6.25 1.575 1.575 6.25 1.575 12c0 5.75 4.675 10.425 10.425 10.425 5.75 0 10.425-4.675 10.425-10.425C22.425 6.25 17.75 1.575 12 1.575zm5.5 6.675c.375-.35.925-.35 1.275 0 .35.35.35.925 0 1.275l-7.65 7.65a.908.908 0 01-1.3 0l-4.2-4.2a.905.905 0 010-1.275.905.905 0 011.275 0l3.575 3.575z' fill='%23FFF' fill-rule='nonzero'/%3E%3C/svg%3E");;
+	background-position: right 16px center;
+	background-repeat: no-repeat;
+}
+
+.add-business ul.results li.alert,
+.add-business ul.results li.alert:hover {
+	cursor: none;
+	text-align: center;
+	padding: var(--base-unit) var(--base-unit) var(--base-unit) calc(var(--base-unit)*4);
+	margin: var(--base-unit) 0 calc(var(--base-unit)/2) 0;
+	width: 100%;
+	max-width: 900px;
+	color: #fff;
+	border-radius: calc(var(--base-unit)/4);
+	background: var(--blue) url("data:image/svg+xml,%3Csvg width='33' height='33' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.75.75c8.837 0 16 7.163 16 16s-7.163 16-16 16-16-7.163-16-16 7.163-16 16-16zm0 2.133c-7.658 0-13.867 6.209-13.867 13.867 0 7.658 6.209 13.867 13.867 13.867 7.658 0 13.867-6.209 13.867-13.867 0-7.658-6.209-13.867-13.867-13.867zm0 19.2a1.067 1.067 0 110 2.134 1.067 1.067 0 010-2.134zm0-12.8c.59 0 1.067.478 1.067 1.067v9.6a1.067 1.067 0 11-2.134 0v-9.6c0-.59.478-1.067 1.067-1.067z' fill='%23ffffff' fill-rule='nonzero'/%3E%3C/svg%3E");
+	background-position: var(--base-unit) center;
+	background-repeat: no-repeat;
+}
+
+
+/* .add-business h2 {
 	font-weight: 400;
 	text-align: center;
 	margin: var(--base-unit) 0;
-}
+} */
 
+/*
 .add-business h2 i {
 	height: calc(var(--base-unit)*2);
 	line-height: calc(var(--base-unit)*2);
@@ -323,6 +397,7 @@ main.businesses > ul li.card {
 	background: none;
 	border: none;
 }
+*/
 
 /* ---------------------------------------------------
 ::Forms
@@ -345,6 +420,46 @@ main.businesses > ul li.card {
 	background: var(--emerald);
 }
 
+fieldset {
+	padding: var(--base-unit) 0 0 0;
+	margin: 0;
+	border: 0;
+}
+
+fieldset label {
+	display: block;
+	font-size: 1.8rem;
+	margin-bottom: calc(var(--base-unit)/2);
+}
+
+fieldset i {
+	font-style: normal;
+	font-weight: 1.8rem;
+	color: var(--chili);
+	display: inline-block;
+	margin-right: calc(var(--base-unit)/4);
+}
+
+input[type="text"],
+input[type="url"],
+textarea {
+	width: 100%;
+	background: var(--specter-100);
+	border: 1px solid var(--specter-300);
+	padding: var(--base-unit);
+	border-radius: calc(var(--base-unit)*2);
+	outline: none;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus,
+input[type="url"]:hover,
+input[type="url"]:focus,
+textarea:hover,
+textarea:focus {
+	border: 1px solid var(--emerald);
+}
+
 /* ---------------------------------------------------
 ::Misc
 -----------------------------------------------------*/
@@ -352,6 +467,7 @@ main.businesses > ul li.card {
 .alert,
 .alert--error,
 .alert--success {
+	text-align: center;
 	padding: var(--base-unit) var(--base-unit) var(--base-unit) calc(var(--base-unit)*4);
 	margin: var(--base-unit) auto;
 	width: 100%;
@@ -410,7 +526,6 @@ a.feedback:hover {
 	background: #fff;
 	border-radius: 24px;
 	box-shadow: var(--shadow);
-	
 }
 
 .logo {
@@ -419,7 +534,9 @@ a.feedback:hover {
 	margin: calc(var(--base-unit)*2) 0;
 }
 
-.hidden { display: none; }
+.hidden { 
+	display: none; 
+}
 
 .loader,
 .loader:after {
