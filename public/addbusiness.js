@@ -104,17 +104,33 @@ async function build_data(places_data) {
         place_id: places_data.place_id,
         icon: result.icon,
         photo: result.photos[0].getUrl({maxWidth:600}),
-        gclink: document.getElementById('gclink').value,
-        ubereatslink: document.getElementById('ubereatslink').value,
-        doordashlink: document.getElementById('doordashlink').value,
-        bitesquadlink: document.getElementById('bitesquadlink').value,
-        three52deliverylink: document.getElementById('three52deliverylink').value,
-        cflink: document.getElementById('cflink').value,
+        gclink: getLink('gclink'),
+        ubereatslink: getLink('ubereatslink'),
+        doordashlink: getLink('doordashlink'),
+        bitesquadlink: getLink('bitesquadlink'),
+        three52deliverylink: getLink('three52deliverylink'),
+        cflink: getLink('cflink'),
         blurb: document.getElementById('blurb').value
       });
 
     });
   });
+}
+
+function getLink(id) {
+  let linkText = document.getElementById(id).value;
+
+  if (linkText.indexOf('://') === -1) {
+    // specified as a relative url, add the schema portion
+    return `https://${linkText}`;
+  }
+
+  if (!linkText.startsWith('http')) {
+    // gave url to something other than a website, no bueno
+    return '[unsafe link]';
+  }
+
+  return linkText;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
