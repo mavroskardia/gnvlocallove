@@ -57,7 +57,7 @@ async function main() {
         bitesquadlink="${bizdata.bitesquadlink}"
         cflink="${bizdata.cflink}"
         blurb="${bizdata.blurb}"
-        website=${bizdata.website}">
+        website="${bizdata.website}">
       </biz-card>
     </li>`;
   });
