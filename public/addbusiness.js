@@ -38,17 +38,8 @@ function postMessage(text) {
 
 async function choose(e) {
 
-  let search = document.getElementById('search');
   let elt = e.target;
-
   while (elt.nodeName !== 'LI') elt = elt.parentElement;
-
-  document.querySelectorAll('#results > li').forEach(li => li.classList.remove('chosen'));
-
-  elt.classList.add('chosen');
-
-  //Update the search box to reflect the selected business
-  search.value = elt.innerHTML.trim();
 
   // warn them if this placeId already exists in our db
   let predata = JSON.parse(decodeURI(elt.dataset.bag));
@@ -59,12 +50,22 @@ async function choose(e) {
     postMessage('Warning: this business already listed!');
   }
 
+  // store the chosen field's data on the parent for later reference
+  let parent = document.getElementById('results');
+  parent.dataset.bag = elt.dataset.bag;
+  // wipe the list
+  parent.innerHTML = '';
+
+  // Update the search box to reflect the selected business
+  let search = document.getElementById('search');
+  search.value = elt.innerHTML.trim();
+
 }
 
 async function addBusiness() {
 
   let db = getdb();
-  let elt = document.querySelector('#results .chosen');
+  let elt = document.querySelector('#results');
   let predata = JSON.parse(decodeURI(elt.dataset.bag));
   let data = await build_data(predata);
 
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   firebase.initializeApp(firebaseConfig);
   document.getElementById('add_business_btn').addEventListener('click', addBusiness);
+
   document.getElementById('search').addEventListener('input', lookup);
   document.getElementById('search').focus();
-
 });
