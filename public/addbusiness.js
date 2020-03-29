@@ -72,7 +72,7 @@ async function addBusiness() {
 
   await db.collection('businesses').add(data);
 
-  postMessage('<div class="alert alert--success">Business successfully added.<a href="index.html"> &#x2190; Go back</a></div>');
+  postMessage('<div class="alert alert--success alert--fixed">Business successfully added.<a href="index.html"> &#x2190; Go back</a></div>');
 
   clear();
 

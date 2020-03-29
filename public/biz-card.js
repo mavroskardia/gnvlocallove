@@ -16,33 +16,38 @@ class BizCard extends LitElement {
       }
 
       div.content {
-        padding: 16px;
+        padding: var(--base-unit);
         text-align: center;
       }
 
       div.content h2 {
         font-weight: normal;
         padding: 0;
-        margin: 16px 0;
+        margin: var(--base-unit) 0;
         text-align: center;
+      }
+
+      div.content h2 a {
+        color: var(--emerald);
+        text-decoration: none;
       }
 
       div.content .btn {
         display: inline-block;
         outline: none;
         cursor: pointer;
-        color: #2ecc71;
-        padding: 16px;
-        margin-bottom: 16px;
+        color: var(--emerald);
+        padding: var(--base-unit);
+        margin-bottom: var(--base-unit);
         background: transparent;
-        border: 1px solid #2ecc71;
+        border: 1px solid var(--emerald);
         border-radius: 32px;
         text-decoration: none;
       }
 
       div.content .btn:hover {
         color: #fff;
-        background: #2ecc71;
+        background: var(--emerald);
       }
 
       div.content p {
@@ -64,7 +69,7 @@ class BizCard extends LitElement {
       div.content a.crowd-funding {
         display: block;
         text-align: center;
-        color: #2ecc71;
+        color: var(--emerald);
       }
 
 
@@ -76,7 +81,7 @@ class BizCard extends LitElement {
       <div>
         <div class="photo" style="background-image: url(${this.photo});"></div>
         <div class="content">
-          <h2>${this.name}</h2>
+          <h2><a href="${this.website}" target="_blank">${this.name}</a></h2>
           ${this.gclink !== '' ? html` <a href="${this.gclink}" class="btn">Purchase gift cards</a>` : ''}
           ${this.blurb !== '' ? html`<p>${this.blurb}</p>` : ''}
           <ul class="logo-list">
