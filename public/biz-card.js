@@ -13,6 +13,7 @@ class BizCard extends LitElement {
         height: 160px;
         background-repeat: no-repeat;
         background-size: cover;
+        background-position-y: center;
       }
 
       div.content {
