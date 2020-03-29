@@ -5,6 +5,9 @@ import './counting-text.js';
 
 async function lookup(e) {
 
+  // clear any existing message
+  postMessage('');
+
   let text = e.target.value;
   // wait until they've typed enough to be useful
   if (text.length < 3) return;
@@ -32,10 +35,9 @@ async function lookup(e) {
 
 }
 
-function postMessage(text) {
-  document.getElementById('message').innerHTML = text;
+function postMessage(content) {
+  document.getElementById('message').innerHTML = content;
 }
-
 
 async function choose(e) {
 
@@ -138,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   firebase.initializeApp(firebaseConfig);
   document.getElementById('add_business_btn').addEventListener('click', addBusiness);
-
   document.getElementById('search').addEventListener('input', lookup);
   document.getElementById('search').focus();
+
 });
