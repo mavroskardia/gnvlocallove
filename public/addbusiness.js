@@ -10,6 +10,8 @@ function postMessage(content) {
 }
 
 async function choose(e) {
+  // clear old messages
+  postMessage('');
 
   // warn them if this placeId already exists in our db
   placeData = this.getPlace();
@@ -29,7 +31,7 @@ async function addBusiness() {
     address: placeData.formatted_address,
     place_id: placeData.place_id,
     icon: placeData.icon,
-    website: placeData.website,
+    website: placeData.website || '',
     photo: placeData.photos[0].getUrl({maxWidth:600}),
     gclink: getLink('gclink'),
     ubereatslink: getLink('ubereatslink'),
