@@ -112,7 +112,7 @@ async function build_data(places_data) {
         bitesquadlink: getLink('bitesquadlink'),
         three52deliverylink: getLink('three52deliverylink'),
         cflink: getLink('cflink'),
-        blurb: document.getElementById('blurb').value,
+        blurb: document.getElementById('blurb').value || '',
         website: result.website
       });
 
@@ -122,6 +122,9 @@ async function build_data(places_data) {
 
 function getLink(id) {
   let linkText = document.getElementById(id).value;
+
+  // they didn't specify anything, leave it alone
+  if (linkText.length === 0) return '';
 
   if (linkText.indexOf('://') === -1) {
     // specified as a relative url, add the schema portion
