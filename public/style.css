@@ -510,15 +510,25 @@ textarea:focus {
 	background-repeat: no-repeat;
 }
 
-a.feedback {
+a.feedback,
+a.add-your-business {
 	display: inline-block;
 	position: fixed;
 	bottom: var(--base-unit);
-	right: var(--base-unit);
 	transition: all var(--duration) ease-in-out;
 }
 
-a.feedback:hover {
+
+a.feedback {
+	right: var(--base-unit);
+}
+
+a.add-your-business {
+	left: var(--base-unit);	
+}
+
+a.feedback:hover,
+a.add-your-business:hover {
 	transform: translate(0, -8px);
 }
 
