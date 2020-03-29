@@ -36,6 +36,7 @@ function postMessage(text) {
   document.getElementById('message').innerHTML = text;
 }
 
+
 async function choose(e) {
 
   let elt = e.target;
@@ -47,7 +48,7 @@ async function choose(e) {
   let qs = await db.collection('businesses').where('place_id', '==', predata.place_id).get();
 
   if (qs.size > 0) {
-    postMessage('Warning: this business already listed!');
+    postMessage('<div class="alert alert--error">Warning: this business already listed!</div>');
   }
 
   // store the chosen field's data on the parent for later reference
@@ -71,7 +72,7 @@ async function addBusiness() {
 
   await db.collection('businesses').add(data);
 
-  postMessage('Business successfully added.');
+  postMessage('<div class="alert alert--success">Business successfully added.<a href="index.html"> &#x2190; Go back</a></div>');
 
   clear();
 

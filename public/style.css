@@ -329,76 +329,6 @@ main.businesses > ul li.card {
 	background-repeat: no-repeat;
 }
 
-
-/* .add-business h2 {
-	font-weight: 400;
-	text-align: center;
-	margin: var(--base-unit) 0;
-} */
-
-/*
-.add-business h2 i {
-	height: calc(var(--base-unit)*2);
-	line-height: calc(var(--base-unit)*2);
-	width: calc(var(--base-unit)*2);
-	text-align: center;
-	font-style: normal;
-	font-size: 1.6rem;
-	color: #fff;
-	background: var(--midnight);
-	display: inline-block;
-	border-radius: calc(var(--base-unit)*2);
-	margin-right: 16px;
-}
-
-.add-business input[type="text"],
-.add-business input[type="url"] {
-	width: 100%;
-	background: var(--specter-100);
-	border: 1px solid var(--specter-300);
-	padding: var(--base-unit);
-	border-radius: calc(var(--base-unit)*2);
-}
-
-.add-business p.empty-set {
-	padding: var(--base-unit);
-	text-align: center;
-}
-
-.add-business ul.results {
- list-style-type: none;
- padding: 0;
- margin: var(--base-unit) 0;
- width: 100%;
-}
-
-.add-business ul.results li {
-	cursor: pointer;
-	background: #fff;
-	padding: var(--base-unit);
-	border-bottom: 1px solid var(--specter-300);
-}
-
-.add-business ul.results li:nth-child(odd) {
-	background: #FFFFE0;
-}
-
-.add-business ul.results li:hover,
-.add-business ul.results li:nth-child(odd):hover,
-.add-business ul.results li.chosen {
-	color: #fff;
-	background: var(--emerald);
-}
-
-.add-business ul.results li.empty-set {
-	cursor: none;
-	padding: var(--base-unit);
-	text-align: center;
-	background: none;
-	border: none;
-}
-*/
-
 /* ---------------------------------------------------
 ::Forms
 -----------------------------------------------------*/
@@ -508,6 +438,17 @@ textarea:focus {
 	background: var(--emerald) url("data:image/svg+xml,%3Csvg width='33' height='33' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.5.5c8.825 0 16 7.175 16 16s-7.175 16-16 16-16-7.175-16-16 7.175-16 16-16zm0 1.954C8.753 2.454 2.454 8.753 2.454 16.5c0 7.747 6.299 14.046 14.046 14.046 7.747 0 14.046-6.299 14.046-14.046 0-7.747-6.299-14.046-14.046-14.046zm7.41 8.993c.506-.471 1.247-.471 1.718 0a1.22 1.22 0 010 1.718L15.321 23.473a1.223 1.223 0 01-1.752 0l-5.658-5.66a1.22 1.22 0 010-1.717 1.22 1.22 0 011.717 0l4.817 4.817z' fill='%23ffffff' fill-rule='nonzero'/%3E%3C/svg%3E");
 	background-position: var(--base-unit) center;
 	background-repeat: no-repeat;
+}
+
+.alert--fixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 0;
+	width: 100%;
+	max-width: 100%;
+	border-radius: 0;
+	z-index: 2000;
 }
 
 a.feedback,
