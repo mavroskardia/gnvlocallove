@@ -30,7 +30,14 @@ class BizCard extends LitElement {
 
       div.content h2 a {
         color: var(--emerald);
-        text-decoration: none;
+        text-decoration: underline;
+      }
+
+      div.content h2 small {
+       display: block;
+       color: var(--concrete);
+       font-size: 1.4rem;
+       margin-top: calc(var(--base-unit)/4);
       }
 
       div.content .btn {
@@ -82,7 +89,10 @@ class BizCard extends LitElement {
       <div>
         <div class="photo" style="background-image: url(${this.photo});"></div>
         <div class="content">
-          <h2><a href="${this.website}" target="_blank">${this.name}</a></h2>
+          <h2>
+            <a href="${this.website}" target="_blank">${this.name}</a>
+            <small>${this.address}</small>
+          </h2>
           ${this.gclink !== '' ? html` <a href="${this.gclink}" class="btn" target="_blank">Purchase gift cards</a>` : ''}
           ${this.blurb !== '' ? html`<p>${this.blurb}</p>` : ''}
           <ul class="logo-list">
