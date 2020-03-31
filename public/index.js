@@ -53,7 +53,8 @@ async function main() {
         bitesquadlink="${bizdata.bitesquadlink}"
         cflink="${bizdata.cflink}"
         blurb="${bizdata.blurb}"
-        website="${bizdata.website}">
+        website="${bizdata.website}"
+        url="${bizdata.url}">
       </biz-card>
     </li>`;
   });
