@@ -1,3 +1,4 @@
+
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import {firebaseConfig, getdb} from './globals';
@@ -26,7 +27,7 @@ async function main() {
   firebase.initializeApp(firebaseConfig);
 
   let db = getdb();
-  let qs = await db.collection('businesses').get();
+  let qs = await db.collection('businesses').orderBy('name').get();
   let listelt = document.getElementById('businesses');
 
   if (qs.size === 0) {
