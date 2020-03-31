@@ -39,7 +39,9 @@ async function addBusiness() {
     bitesquadlink: getLink('bitesquadlink'),
     three52deliverylink: getLink('three52deliverylink'),
     cflink: getLink('cflink'),
-    blurb: document.getElementById('blurb').value || ''
+    blurb: document.getElementById('blurb').value
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;') || ''
   };
 
   let db = getdb();
