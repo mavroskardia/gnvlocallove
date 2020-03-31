@@ -162,6 +162,11 @@ nav .social-links #twitter-widget-0 {
 	margin: 0 calc(var(--base-unit)/4);
 }
 
+header {
+	text-align: center;
+	padding: var(--base-unit);
+}
+
 main {
 	margin: 0 auto;
 	padding: calc(var(--base-unit)*4) var(--base-unit);
@@ -172,9 +177,8 @@ main {
 ::Hero
 -----------------------------------------------------*/
 
-header {
+header.hero {
 	position: relative;
-	text-align: center;
 	padding: calc(var(--base-unit)*4) var(--base-unit);
 	margin: 0;
 	width: 100%;
@@ -186,10 +190,6 @@ header a,
 header h1,
 header h2 {
 	margin: var(--base-unit) auto;
-}
-
-header a.logo {
-	margin-top: 0;
 }
 
 header h2 {
@@ -263,7 +263,7 @@ main.businesses > ul li.card {
 ::Add new business
 -----------------------------------------------------*/
 
-.add-business {
+.add-business .card {
 	margin: calc(var(--base-unit)*2) auto;
 	padding: calc(var(--base-unit)*2); 
 	display: grid;
@@ -499,9 +499,7 @@ a.add-your-business:hover {
 }
 
 .logo {
-	display: flex;
-	justify-content: center;
-	margin: calc(var(--base-unit)*2) 0;
+	display: inline-block;
 }
 
 .hidden { 
