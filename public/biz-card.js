@@ -102,7 +102,7 @@ class BizCard extends LitElement {
           <h2>
             <a href="${this.website}" target="_blank">${this.name}</a>
             <small>
-              <a target="_blank" href="${this.getBizLink(this)}">
+              <a target="_blank" href="${this.getBizLink()}">
                 ${this.address}
               </a>
             </small>
