@@ -33,11 +33,16 @@ class BizCard extends LitElement {
         text-decoration: underline;
       }
 
-      div.content h2 small {
+      div.content h2 small a {
        display: block;
+       text-decoration: none;
        color: var(--concrete);
        font-size: 1.4rem;
        margin-top: calc(var(--base-unit)/4);
+      }
+
+      div.content h2 small a:hover {
+        text-decoration: underline;
       }
 
       div.content .btn {
@@ -84,6 +89,11 @@ class BizCard extends LitElement {
     `;
   }
 
+  getBizLink() {
+    return !!this.url ? this.url :
+              `https://www.google.com/maps/search/?api=1&query=${encodeURI(this.address)}`;
+  }
+
   render() {
     let result = html`
       <div>
@@ -91,7 +101,11 @@ class BizCard extends LitElement {
         <div class="content">
           <h2>
             <a href="${this.website}" target="_blank">${this.name}</a>
-            <small>${this.address}</small>
+            <small>
+              <a target="_blank" href="${this.getBizLink(this)}">
+                ${this.address}
+              </a>
+            </small>
           </h2>
           ${this.gclink !== '' ? html` <a href="${this.gclink}" class="btn" target="_blank">Purchase gift cards</a>` : ''}
           ${this.blurb !== '' ? html`<p>${this.blurb}</p>` : ''}
@@ -113,6 +127,9 @@ class BizCard extends LitElement {
     return {
       name: { type: String },
       address: { type: String },
+      website: { type: String },
+      url: { type: String },
+      blurb: { type: String },
       gclink: { type: String },
       photo: { type: String },
       icon: { type: String },
@@ -121,8 +138,6 @@ class BizCard extends LitElement {
       bitesquadlink: { type: String },
       three52deliverylink: { type: String },
       cflink: { type: String },
-      blurb: { type: String },
-      website: { type: String }
     }
   }
 }

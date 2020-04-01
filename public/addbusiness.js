@@ -32,6 +32,7 @@ async function addBusiness() {
     place_id: placeData.place_id,
     icon: placeData.icon,
     website: placeData.website || '',
+    url: placeData.url || '',
     photo: placeData.photos[0].getUrl({maxWidth:600}),
     gclink: getLink('gclink'),
     ubereatslink: getLink('ubereatslink'),
@@ -39,9 +40,9 @@ async function addBusiness() {
     bitesquadlink: getLink('bitesquadlink'),
     three52deliverylink: getLink('three52deliverylink'),
     cflink: getLink('cflink'),
-    blurb: document.getElementById('blurb').value
+    blurb: (document.getElementById('blurb').value || '')
             .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;') || ''
+            .replace(/>/g, '&gt;')
   };
 
   let db = getdb();
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       new google.maps.LatLng(29.476256, -82.656630), // SW corner of Alachua County
       new google.maps.LatLng(29.935487, -82.061308)  // NE corner
     ),
-    fields: ['place_id', 'formatted_address', 'icon', 'name', 'photo', 'website'],
+    fields: ['place_id', 'formatted_address', 'icon', 'name', 'photo', 'url', 'website'],
     strictBounds: true
   });
   autocomplete.addListener('place_changed', choose);
