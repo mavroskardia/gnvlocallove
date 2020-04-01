@@ -91,7 +91,7 @@ class BizCard extends LitElement {
 
   getBizLink() {
     return !!this.url ? this.url :
-              `https://www.google.com/maps/search/?api=1&query=${encodeURI(this.address)}`;
+      `https://www.google.com/maps/place/?q=place_id:${this.place_id}`;
   }
 
   render() {

@@ -12,9 +12,9 @@ export const firebaseConfig = {
   measurementId: "G-14956LRHB8"
 };
 
-export function getdb() {
+export function getdb(override) {
   let db = firebase.firestore();
-  if (location.hostname === "localhost") {
+  if (!override && location.hostname === "localhost") {
     db.settings({
       host: "localhost:8080",
       ssl: false
