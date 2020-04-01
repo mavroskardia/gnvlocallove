@@ -39,9 +39,11 @@ async function main() {
 
   qs.forEach(doc => {
     let bizdata = doc.data();
+
     listelt.innerHTML += `
     <li class="card">
       <biz-card
+        place_id="${bizdata.place_id}"
         name="${bizdata.name}"
         address="${bizdata.address}"
         photo="${bizdata.photo}"

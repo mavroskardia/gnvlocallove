@@ -89,11 +89,6 @@ class BizCard extends LitElement {
     `;
   }
 
-  getBizLink() {
-    return !!this.url ? this.url :
-      `https://www.google.com/maps/place/?q=place_id:${this.place_id}`;
-  }
-
   render() {
     let result = html`
       <div>
@@ -102,7 +97,7 @@ class BizCard extends LitElement {
           <h2>
             <a href="${this.website}" target="_blank">${this.name}</a>
             <small>
-              <a target="_blank" href="${this.getBizLink()}">
+              <a target="_blank" href="https://www.google.com/maps/place/?q=place_id:${this.place_id}">
                 ${this.address}
               </a>
             </small>
@@ -125,6 +120,7 @@ class BizCard extends LitElement {
 
   static get properties() {
     return {
+      place_id: { type: String },
       name: { type: String },
       address: { type: String },
       website: { type: String },
