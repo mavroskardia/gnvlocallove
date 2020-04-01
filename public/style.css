@@ -128,7 +128,7 @@ small {
 }
 
 /* ---------------------------------------------------
-::Layout
+::Layout (Nav, Header, Main, Footer)
 -----------------------------------------------------*/
 
 nav {
@@ -167,16 +167,6 @@ header {
 	padding: var(--base-unit);
 }
 
-main {
-	margin: 0 auto;
-	padding: calc(var(--base-unit)*4) var(--base-unit);
-	max-width: 900px;
-}
-
-/* ---------------------------------------------------
-::Hero
------------------------------------------------------*/
-
 header.hero {
 	position: relative;
 	padding: calc(var(--base-unit)*4) var(--base-unit);
@@ -197,7 +187,7 @@ header h2 {
 	max-width: 900px;
 }
 
-input[type="search"] {
+header.hero input[type="search"] {
 	position: absolute;
 	bottom: -40px;
 	left: 0;
@@ -214,10 +204,29 @@ input[type="search"] {
 	box-shadow: var(--shadow-long);
 }
 
-input[type="search"]:hover,
-input[type="search"]:focus {
+header.hero input[type="search"]:hover,
+header.hero input[type="search"]:focus {
 	outline: none;
 	border: 1px solid var(--emerald);
+}
+
+main {
+	margin: 0 auto;
+	padding: calc(var(--base-unit)*4) var(--base-unit);
+	max-width: 900px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 2000;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: var(--base-unit);
+	background: rgba(244, 247, 249, .65);
+	border-top: 1px solid var(--specter-300);
 }
 
 /* ---------------------------------------------------
@@ -470,25 +479,16 @@ textarea:focus {
 	z-index: 2000;
 }
 
-a.feedback,
-a.add-your-business {
+a.feedback {
 	display: inline-block;
 	position: fixed;
-	bottom: var(--base-unit);
+	bottom: calc(var(--base-unit)*4);
+	right: var(--base-unit);
+	z-index: 3000;
 	transition: all var(--duration) ease-in-out;
 }
 
-
-a.feedback {
-	right: var(--base-unit);
-}
-
-a.add-your-business {
-	left: var(--base-unit);	
-}
-
-a.feedback:hover,
-a.add-your-business:hover {
+a.feedback:hover {
 	transform: translate(0, -8px);
 }
 
