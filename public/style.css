@@ -141,6 +141,20 @@ nav {
 	justify-content: space-between;
 }
 
+@media ( max-width: 600px ) {
+
+	nav {
+		display: block;
+		text-align: center;
+	}
+
+	nav > a {
+		display: block;
+		margin: 8px auto;
+	}
+
+}
+
 nav a {
 	text-align: center;
 	max-width: 180px;
@@ -175,6 +189,16 @@ header.hero {
 	background: rgba(244, 247, 249, .65);
 	border-bottom: 1px solid var(--specter-300);
 }
+
+
+@media ( max-width: 600px ) {
+
+	header.hero {
+		padding-top: calc(var(--base-unit)*6);
+	}
+
+}
+
 
 header a,
 header h1,
@@ -227,6 +251,21 @@ footer {
 	padding: var(--base-unit);
 	background: rgba(244, 247, 249, .65);
 	border-top: 1px solid var(--specter-300);
+}
+
+
+@media ( max-width: 600px ) {
+
+	footer {
+		display: block;
+		text-align: center;
+	}
+
+	footer a {
+		display: block;
+		margin: calc(var(--base-unit)/4) 0;
+	}
+
 }
 
 /* ---------------------------------------------------
