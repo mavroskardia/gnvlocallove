@@ -1,6 +1,7 @@
 
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/analytics';
 import {firebaseConfig, getdb} from './globals';
 import './biz-card.js';
 
@@ -25,6 +26,7 @@ async function main() {
   document.getElementById('restaurantsearch').addEventListener('input', search);
 
   firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 
   let db = getdb();
   let qs = await db.collection('businesses').orderBy('name').get();
