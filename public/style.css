@@ -237,6 +237,11 @@ main.businesses {
 	max-width: 1440px;
 }
 
+main .business-count {
+	text-align: center;
+	padding: var(--base-unit);
+}
+
 main.businesses > ul {
 	padding: 0;
 	margin: calc(var(--base-unit)*2) 0;

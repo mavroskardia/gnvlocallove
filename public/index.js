@@ -31,10 +31,13 @@ async function main() {
   let db = getdb();
   let qs = await db.collection('businesses').orderBy('name').get();
   let listelt = document.getElementById('businesses');
+  let count = document.getElementById('count');
 
   if (qs.size === 0) {
     listelt.innerHTML = '<div class="alert alert--info">No businesses yet. <a href="addbusiness.html">Add a new business?</a></div>';
     return;
+  } else {
+    count.innerHTML = qs.size;
   }
 
   listelt.innerHTML = '';
