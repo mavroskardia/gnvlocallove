@@ -256,6 +256,37 @@ main.businesses > ul li.card {
 	min-width: 380px;
 }
 
+main.businesses > ul li:empty {
+	position: relative;
+	width: 100%;
+	max-width: 600px;
+	min-width: 380px;
+	height: 300px;
+	border-radius: 24px;
+	background: var(--specter-100);
+	border: 1px solid var(--specter-300);
+	box-shadow: 0 var(--base-unit) calc(var(--base-unit)*3) rgba(0, 0, 0, 0.1);
+}
+
+main.businesses > ul li:empty:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+	border-radius: 24px;
+	background: linear-gradient(to right, var(--specter-100) 8%, #f9f9f9 18%, var(--specter-100) 33%);
+	animation: skeleton-animation 3s infinite linear;
+}
+
+@keyframes skeleton-animation {
+	0%{
+			background-position: -400px 0
+	}
+	100%{
+			background-position: 400px 0
+	}
+}
+
 @media ( max-width: 900px ) {
 
 	main.businesses > ul {
@@ -528,6 +559,15 @@ a.feedback:hover {
   border-left: .75em solid var(--emerald);
   transform: translateZ(0);
   animation: loading-animation 1.1s infinite linear;
+}
+
+@keyframes skeleton-loading-animation {
+  0% {
+		background: rgba(244, 247, 249, .65);
+  }
+  100% {
+		background: rgba(244, 247, 249, .95);
+  }
 }
 
 @keyframes loading-animation {
