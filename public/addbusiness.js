@@ -1,5 +1,6 @@
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/analytics';
 import {getdb, firebaseConfig} from './globals';
 import './counting-text.js';
 
@@ -25,6 +26,7 @@ async function choose(e) {
 }
 
 async function addBusiness() {
+  let photoUrl = placeData.photos[0].getUrl({maxWidth:600});
 
   let data = {
     name: placeData.name,
@@ -33,7 +35,7 @@ async function addBusiness() {
     icon: placeData.icon,
     website: placeData.website || '',
     url: placeData.url || '',
-    photo: placeData.photos[0].getUrl({maxWidth:600}),
+    photo: photoUrl,
     gclink: getLink('gclink'),
     ubereatslink: getLink('ubereatslink'),
     doordashlink: getLink('doordashlink'),
@@ -82,6 +84,8 @@ function getLink(id) {
 document.addEventListener('DOMContentLoaded', () => {
 
   firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
   document.getElementById('add_business_btn').addEventListener('click', addBusiness);
 
   let searchBox = document.getElementById('search');

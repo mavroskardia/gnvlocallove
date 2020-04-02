@@ -9,7 +9,7 @@ export const firebaseConfig = {
   storageBucket: "gnv-local-love.appspot.com",
   messagingSenderId: "204298349507",
   appId: "1:204298349507:web:a3bde1a4b21479be89eb76",
-  measurementId: "G-14956LRHB8"
+  measurementId: "G-6C337Y0HWW"
 };
 
 export function getdb(override) {
