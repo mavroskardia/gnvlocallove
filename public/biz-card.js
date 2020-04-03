@@ -84,15 +84,13 @@ class BizCard extends LitElement {
         text-align: center;
         color: var(--emerald);
       }
-
-
     `;
   }
 
   render() {
     let result = html`
       <div>
-        <div class="photo" style="background-image: url(${this.photo});"></div>
+        <div class="photo" style="background-image: url(${this.photo})"></div>
         <div class="content">
           <h2>
             <a href="${this.website}" target="_blank">${this.name}</a>
@@ -117,6 +115,25 @@ class BizCard extends LitElement {
     return result;
   }
 
+  firstUpdated(changedProperties) {
+
+    var gnv = new google.maps.LatLng(29.6516, -82.3248);
+    let map = new google.maps.Map(document.getElementById('map'), {
+      center: gnv,
+      zoom: 17
+    });
+
+    let places = new google.maps.places.PlacesService(map);
+
+    places.getDetails({
+      placeId: this.place_id,
+      fields: ['photos'],
+    }, (place, status) => {
+      if (place) {
+        this.photo = place.photos[0].getUrl({maxWidth:600});
+      }
+    });
+  }
 
   static get properties() {
     return {
@@ -125,9 +142,9 @@ class BizCard extends LitElement {
       address: { type: String },
       website: { type: String },
       url: { type: String },
+      photo: { type: String },
       blurb: { type: String },
       gclink: { type: String },
-      photo: { type: String },
       icon: { type: String },
       ubereatslink: { type: String },
       doordashlink: { type: String },

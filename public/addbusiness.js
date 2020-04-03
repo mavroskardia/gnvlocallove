@@ -26,7 +26,8 @@ async function choose(e) {
 }
 
 async function addBusiness() {
-  let photoUrl = placeData.photos[0].getUrl({maxWidth:600});
+
+  let photoUrl = placeData.photos ? placeData.photos[0].getUrl({maxWidth:600}) : '';
 
   let data = {
     name: placeData.name,
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       new google.maps.LatLng(29.476256, -82.656630), // SW corner of Alachua County
       new google.maps.LatLng(29.935487, -82.061308)  // NE corner
     ),
-    fields: ['place_id', 'formatted_address', 'icon', 'name', 'photo', 'url', 'website'],
+    fields: ['place_id', 'formatted_address', 'icon', 'photos', 'name', 'url', 'website'],
     strictBounds: true
   });
   autocomplete.addListener('place_changed', choose);

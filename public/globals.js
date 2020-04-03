@@ -2,7 +2,8 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyDSQK-C2vtKMopX3qsBzHxfc5n4YMsnS2Y",
+  apiKey: "AIzaSy" + "DuzIlCFy7cCWP" + "P7NHvBiFvF6zAJyZ5l_Y",
+  //apiKey: "AIzaSyDSQK-C2vtK" + "MopX3qsBzHxf" + "c5n4YMsnS2Y",
   authDomain: "gnv-local-love.firebaseapp.com",
   databaseURL: "https://gnv-local-love.firebaseio.com",
   projectId: "gnv-local-love",
