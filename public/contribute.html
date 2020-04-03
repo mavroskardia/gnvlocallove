@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,47 +37,43 @@
       })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
   </script>
   </head>
-  <body class="bg-pattern">
-    <nav role="navigation">
-      <a href="addbusiness.html">+ Add your business</a>
-      <div class="social-links">
-        <div class="fb-share-button" data-href="https://gnvloveslocal.org/" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgnvloveslocal.org%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Gainesville&#39;s local businesses need your support. Please consider giving your favorite local business a boost by buying a digital gift card, ordering in, or contributing to a crowdfunding campaign." data-hashtags="Gainesville,GNV" data-lang="en" data-show-count="false">Tweet</a>
-      </div>
+  <body class="bg-pattern contribute">
+    <nav role="navigation" class="static">
+      <a href="index.html">&#8592; Home</a>
     </nav>
-    <header role="banner" class="hero">
+    <header>
       <a href="index.html" title="home" class="logo">
         <img src="pizza.png" alt="Pizza logo">
       </a>
-      <h1>GNV LOVES LOCAL</h1>
-      <h2>
-        Our local businesses need your support. Please consider giving your favorite local business a boost by
-        <b>buying a digital gift card</b>, <b>ordering in</b>, or <b>contributing to a crowdfunding campaign</b>.
-      </h2>
-      <a href="contribute.html">Other ways you can contribute &#x2192;</a>
-      <input type="search" id="restaurantsearch" name="restaurant-search" aria-label="Search for your favorite businesses" placeholder="Search for your favorite businesses">
     </header>
-    <main role="main" class="businesses">
-      <p class="business-count">showing <b id="count">00</b> businesses. Sort <a href="#">A &#x2192; Z</a></p>
-      <ul id="businesses">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </main>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1q8Qt1EhaVYYRFfTQwcYlKBdtdlIuQQHJfKKyMYg9EcFlxg/viewform" target="_blank" class="feedback" title="How can we make GNV Loves Local better?">
+    <main role="main" class="card grid">
+      <div id="message" class="col--full"></div>
+      <h1 class="col--full">Other ways you can contribute</h1>
+			<ul class="list col--full">
+				<li>
+					<a href="https://gainesvilletips.org/" target="_blank">Gainesville Tips – A Virtual Community Tip Jar</a>
+				</li>
+				<li>
+					<a href="https://www.whatsfordinnergnv.com/" target="_blank">What's for Dinner Gainesville</a>
+				</li>
+				<li>
+					<a href="https://www.gofundme.com/f/help-support-your-local-restaurants/" target="_blank">Support Gainesville Restaurants - crowdfunding campaign</a>
+				</li>
+				<li>
+					<a href="https://www.gofundme.com/f/masks-for-north-central-florida-healthcare-workers" target="_blank">
+						Florida Frontline Medical Worker Mask Fund - crowdfunding campaign</a>
+				</li>
+			</ul>
+		</main>
+    <footer role="contentinfo">
+      <a href="https://github.com/mavroskardia/gnvlocallove">Fork this project on github</a>
+      <a href="#">Reporting an inappropriate business</a>
+    </footer>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1q8Qt1EhaVYYRFfTQwcYlKBdtdlIuQQHJfKKyMYg9EcFlxg/viewform" target="_blank" class="feedback">
       <svg width="48" height="44" xmlns="http://www.w3.org/2000/svg"><path d="M36 0H12C5.29.092-.08 5.6 0 12.312v29.286a1.6 1.6 0 002.745 1.12l6.4-6.583H36c6.71-.093 12.08-5.601 12-12.312V12.312C48.08 5.6 42.71.092 36 0zm0 21.6a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zm-8.8-3.2a3.2 3.2 0 11-6.4 0 3.2 3.2 0 016.4 0zM12 15.2a3.2 3.2 0 110 6.4 3.2 3.2 0 010-6.4z" fill="#2ECC71" fill-rule="nonzero"/></svg>
     </a>
-    <footer role="contentinfo">
-      <a target="_blank" href="https://github.com/mavroskardia/gnvlocallove">This website is open source.</a>
-      <a target="_blank" href="https://forms.gle/G1s8GssGRNsGtM2BA">Report an inappropriate business</a>
-    </footer>
-    <script src="index.js"></script>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div id="map"></div>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVnJZHM-bflrKN-iDt8AE1016JYKk6dws&libraries=places"></script>
+    <script src="addbusiness.js"></script>
   </body>
 </html>
