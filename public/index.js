@@ -80,6 +80,8 @@ class GLL {
 
   toggleSortOrder() {
     this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    document.getElementById('sortOrderAction').innerHTML = this.sortOrder === 'asc'
+      ? 'A &#x2192; Z' : 'Z &#x2192; A';
     this.businesses = this.businesses.reverse();
     this.buildList(this.businesses, this.sortOrder);
   }
