@@ -2,6 +2,11 @@ import {LitElement, html, css} from 'lit-element';
 
 class BizCard extends LitElement {
 
+  constructor() {
+    super();
+    this.photo = 'placeholder-image.jpg';
+  }
+
   static get styles() {
     return css`
       :host {
@@ -90,7 +95,7 @@ class BizCard extends LitElement {
   render() {
     let result = html`
       <div>
-        <div class="photo" style="background-image: url(${this.photo})"></div>
+        <div class="photo" style="background-image: url(${this.photo || 'placeholder-image.jpg'})"></div>
         <div class="content">
           <h2>
             <a href="${this.website}" target="_blank">${this.name}</a>
@@ -125,14 +130,21 @@ class BizCard extends LitElement {
 
     let places = new google.maps.places.PlacesService(map);
 
+    // TODO: this will stop getting photos after 10 requests
     places.getDetails({
       placeId: this.place_id,
       fields: ['photos'],
     }, (place, status) => {
       if (place) {
         this.photo = place.photos[0].getUrl({maxWidth:600});
+      } else {
+        // wait a second, then try again
+        window.setTimeout(() => {
+          this.firstUpdated(changedProperties);
+        }, 1000);
       }
     });
+
   }
 
   static get properties() {

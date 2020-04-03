@@ -43,7 +43,6 @@ class GLL {
           place_id="${b.place_id}"
           name="${b.name}"
           address="${b.address}"
-          photo="${b.photo}"
           icon="${b.icon}"
           gclink="${b.gclink}"
           ubereatslink="${b.ubereatslink}"
