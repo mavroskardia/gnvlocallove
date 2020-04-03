@@ -141,6 +141,20 @@ nav {
 	justify-content: space-between;
 }
 
+@media ( max-width: 600px ) {
+
+	nav {
+		display: block;
+		text-align: center;
+	}
+
+	nav > a {
+		display: block;
+		margin: 8px auto;
+	}
+
+}
+
 nav a {
 	text-align: center;
 	max-width: 180px;
@@ -175,6 +189,16 @@ header.hero {
 	background: rgba(244, 247, 249, .65);
 	border-bottom: 1px solid var(--specter-300);
 }
+
+
+@media ( max-width: 600px ) {
+
+	header.hero {
+		padding-top: calc(var(--base-unit)*6);
+	}
+
+}
+
 
 header a,
 header h1,
@@ -229,12 +253,32 @@ footer {
 	border-top: 1px solid var(--specter-300);
 }
 
+
+@media ( max-width: 600px ) {
+
+	footer {
+		display: block;
+		text-align: center;
+	}
+
+	footer a {
+		display: block;
+		margin: calc(var(--base-unit)/4) 0;
+	}
+
+}
+
 /* ---------------------------------------------------
 ::Businesses
 -----------------------------------------------------*/
 
 main.businesses {
 	max-width: 1440px;
+}
+
+main .business-count {
+	text-align: center;
+	padding: var(--base-unit);
 }
 
 main.businesses > ul {
@@ -300,34 +344,16 @@ main.businesses > ul li:empty:after {
 }
 
 /* ---------------------------------------------------
-::Add new business
+::Add new business, and Contribute
 -----------------------------------------------------*/
 
 .add-business .card {
-	margin: calc(var(--base-unit)*2) auto;
-	padding: calc(var(--base-unit)*2); 
-	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-  grid-column-gap: var(--base-unit);
+	margin-bottom: calc(var(--base-unit)*6);
 }
 
-.add-business h1 {
+.add-business h1,
+.contribute h1  {
 	text-align: center;
-}
-
-.add-business .col--left {
-	grid-column: 1 / 5; 
-	grid-row: auto; 
-}
-
-.add-business .col--right {
-	grid-column: 5 / 9; 
-	grid-row: auto; 
-}
-
-.add-business .col--full {
-	grid-column: 1 / -1; 
-	grid-row: auto; 
 }
 
 .add-business fieldset {
@@ -452,6 +478,47 @@ textarea:focus {
 /* ---------------------------------------------------
 ::Misc
 -----------------------------------------------------*/
+
+.grid {
+	margin: calc(var(--base-unit)*2) auto;
+	padding: calc(var(--base-unit)*2); 
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: var(--base-unit);
+}
+
+.col--left,
+.col--left  {
+	grid-column: 1 / 5; 
+	grid-row: auto; 
+}
+
+.col--right,
+.col--right {
+	grid-column: 5 / 9; 
+	grid-row: auto; 
+}
+
+.col--full ,
+.col--full {
+	grid-column: 1 / -1; 
+	grid-row: auto; 
+}
+
+ul.list {
+	list-style: none;
+	padding: 0;
+	margin: var(--base-unit) 0;
+}
+
+ul.list li {
+	padding: var(--base-unit) 0;
+	border-bottom: 1px solid var(--specter-300);
+}
+
+ul.list li:last-child {
+	border-bottom: 0;	
+}
 
 .alert,
 .alert--error,
