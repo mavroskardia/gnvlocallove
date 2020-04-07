@@ -16,30 +16,23 @@ class CountingText extends LitElement {
     }
   }
 
-  attributeChangedCallback(name, oldval, newval) {
-    if (name === 'value') {
-      this.shadowRoot.getElementById('thetext').value = newval;
-    }
-    super.attributeChangedCallback(name, oldval, newval);
-  }
-
   static get styles() {
     return css`
       :host {
         display: block;
       }
 
-      fieldset { 
-        position: relative; 
+      fieldset {
+        position: relative;
         margin: 0;
         border: 0;
       }
 
       small {
         position: absolute;
-        left: 0; 
-        right: 0; 
-        margin-left: auto; 
+        left: 0;
+        right: 0;
+        margin-left: auto;
         margin-right: auto;
         bottom: 0;
         display: inline-block;
@@ -71,7 +64,7 @@ class CountingText extends LitElement {
         <textarea id="thetext"
           maxlength="${this.maxlength}"
           placeholder="${this.placeholder}"
-          @input="${this.updateCount}"></textarea>
+          @input="${this.updateCount}">${this.value}</textarea>
       </fieldset>
     `;
   }

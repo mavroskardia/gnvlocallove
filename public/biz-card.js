@@ -1,4 +1,5 @@
 import {LitElement, html, css} from 'lit-element';
+import './biz-card-editor';
 
 class BizCard extends LitElement {
 
@@ -96,6 +97,7 @@ class BizCard extends LitElement {
     let result = html`
       <div>
         <div class="photo" style="background-image: url(${this.photo || 'placeholder-image.jpg'})"></div>
+        <button @click="${this.edit}" class="edit">Edit</button>
         <div class="content">
           <h2>
             <a href="${this.website}" target="_blank">${this.name}</a>
@@ -120,8 +122,28 @@ class BizCard extends LitElement {
     return result;
   }
 
-  firstUpdated(changedProperties) {
+  edit() {
+    // make this card full screen
+    this.parentElement.classList.add('fullscreen');
+    let bce = document.createElement('biz-card-editor');
+    bce.bizCard = this;
+    bce.addEventListener('close', () => {
+      this.shadowRoot.querySelector('biz-card-editor').remove();
+      this.parentElement.classList.remove('fullscreen');
+    });
+    this.shadowRoot.appendChild(bce);
+  }
 
+  connectedCallback() {
+    super.connectedCallback();
+    Object.assign(this, this.databag);
+  }
+
+  firstUpdated(changedProperties) {
+    // don't try to grab photos when testing locally
+    if (location.hostname === 'localhost') return;
+
+    // build up the Google Maps information to get the place details
     var gnv = new google.maps.LatLng(29.6516, -82.3248);
     let map = new google.maps.Map(document.getElementById('map'), {
       center: gnv,
@@ -129,15 +151,16 @@ class BizCard extends LitElement {
     });
 
     let places = new google.maps.places.PlacesService(map);
+    let retries = 0;
 
-    // TODO: this will stop getting photos after 10 requests
-    places.getDetails({
-      placeId: this.place_id,
-      fields: ['photos'],
-    }, (place, status) => {
+    places.getDetails({ placeId: this.place_id, fields: ['photos'] }, (place, status) => {
       if (place) {
         this.photo = place.photos[0].getUrl({maxWidth:600});
       } else {
+        if (++retries > 3) {
+          // retried too many times, bail
+          return;
+        }
         // wait a second, then try again
         window.setTimeout(() => {
           this.firstUpdated(changedProperties);
@@ -163,6 +186,7 @@ class BizCard extends LitElement {
       bitesquadlink: { type: String },
       three52deliverylink: { type: String },
       cflink: { type: String },
+      databag: { type: Object }
     }
   }
 }
