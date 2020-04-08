@@ -12,6 +12,21 @@ class BizCard extends LitElement {
     return css`
       :host {
         display: block;
+        position: relative;
+      }
+
+      a.edit {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        transition: all .25s ease-in-out;
+      }
+
+      a.edit:hover {
+        top: 10px;
       }
 
       div.photo {
@@ -96,8 +111,10 @@ class BizCard extends LitElement {
   render() {
     let result = html`
       <div>
+        <a href="#" @click="${this.edit}" class="edit" title="Edit this listing">
+          <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16A16 16 0 0016 0z" fill="#2ECC71"/><path d="M19.328 8a.89.89 0 00-.616.26L8.26 18.713a.889.889 0 00-.26.628v3.771c0 .491.398.889.889.889h3.77a.889.889 0 00.63-.26l10.45-10.452a.889.889 0 000-1.257l-3.77-3.77a.89.89 0 00-.64-.26zm.013 2.146l2.514 2.514-9.563 9.562H9.778v-2.514l9.563-9.562z" fill="#FFF"/></g></svg>
+        </a>
         <div class="photo" style="background-image: url(${this.photo || 'placeholder-image.jpg'})"></div>
-        <button @click="${this.edit}" class="edit">Edit</button>
         <div class="content">
           <h2>
             <a href="${this.website}" target="_blank">${this.name}</a>

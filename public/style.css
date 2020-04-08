@@ -414,11 +414,33 @@ main.businesses > ul li:empty:after {
 	background-repeat: no-repeat;
 }
 
-/* ---------------------------------------------------
+ul#businesses li.card.fullscreen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	max-width: 100%;
+	width: 100vw;
+	height: 100vh;
+	/* padding: calc(var(--base-unit)*2); */
+	border-radius: 0;
+	background: rgba(255,255,255,0.95);
+	z-index: 10000;
+	overflow: auto;
+}
+
+ul#businesses li.card.fullscreen biz-card {
+
+	max-width: 800px;
+	margin: 0 auto;
+
+}
+/* ----------------------------
+-----------------------
 ::Forms
 -----------------------------------------------------*/
 
 .btn {
+	font-size: 1.6rem;
 	margin-top: var(--base-unit);
 	width: 100%;
 	outline: none;
@@ -433,6 +455,17 @@ main.businesses > ul li:empty:after {
 .btn:hover {
 	color: #fff;
 	background: var(--emerald);
+}
+
+.btn--secondary {
+	color: var(--midnight);
+	background: transparent;
+	border: 1px solid var(--midnight);
+}
+
+.btn--secondary:hover {
+	color: #fff;
+	background: var(--midnight);
 }
 
 fieldset {
@@ -484,7 +517,7 @@ textarea:focus {
 	padding: calc(var(--base-unit)*2);
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
-  grid-column-gap: var(--base-unit);
+	grid-column-gap: var(--base-unit);
 }
 
 .col--left,
@@ -670,11 +703,11 @@ a.feedback:hover {
 	animation: pattern-animation 30s linear infinite;
 }
 
-.fullscreen {
+/* .fullscreen {
   position: fixed;
-  top: 0;
+  top: 0;`
   left: 0;
   max-width: 100% !important;
   width: 100vw !important;
   height: 100vh !important;
-}
+} */
