@@ -26,10 +26,11 @@ export function getdb(override) {
 
 export function getLink(id, root) {
   if (!root) root = document;
+
   let linkText = root.getElementById(id).value;
 
   // they didn't specify anything, leave it alone
-  if (linkText.length === 0) return '';
+  if (!linkText || linkText.length === 0) return '';
 
   if (linkText.indexOf('://') === -1) {
     // specified as a relative url, add the schema portion

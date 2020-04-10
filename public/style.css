@@ -703,6 +703,17 @@ a.feedback:hover {
 	animation: pattern-animation 30s linear infinite;
 }
 
+#toast {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  display: none;
+}
+
+#toast .toasty {
+  /* do some sort of animation */
+}
+
 /* .fullscreen {
   position: fixed;
   top: 0;`

@@ -19,19 +19,19 @@ export class BizCardEditor extends LitElement {
         grid-template-columns: repeat(8, 1fr);
         grid-column-gap: var(--base-unit);
       }
-      
+
       .col--left,
       .col--left  {
         grid-column: 1 / 5;
         grid-row: auto;
       }
-      
+
       .col--right,
       .col--right {
         grid-column: 5 / 9;
         grid-row: auto;
       }
-      
+
       .col--full ,
       .col--full {
         grid-column: 1 / -1;
@@ -50,7 +50,7 @@ export class BizCardEditor extends LitElement {
         border: 1px solid var(--emerald);
         border-radius: calc(var(--base-unit)*2);
       }
-      
+
       .btn:hover {
         color: #fff;
         background: var(--emerald);
@@ -61,24 +61,24 @@ export class BizCardEditor extends LitElement {
         background: transparent;
         border: 1px solid var(--midnight);
       }
-      
+
       .btn--secondary:hover {
         color: #fff;
         background: var(--midnight);
       }
-      
+
       fieldset {
         padding: var(--base-unit) 0 0 0;
         margin: 0;
         border: 0;
       }
-      
+
       fieldset label {
         display: block;
         font-size: 1.8rem;
         margin-bottom: calc(var(--base-unit)/2);
       }
-      
+
       fieldset i {
         font-style: normal;
         font-weight: 1.8rem;
@@ -86,7 +86,7 @@ export class BizCardEditor extends LitElement {
         display: inline-block;
         margin-right: calc(var(--base-unit)/4);
       }
-      
+
       input[type="text"],
       input[type="url"],
       textarea {
@@ -99,7 +99,7 @@ export class BizCardEditor extends LitElement {
         outline: none;
         box-sizing: border-box;
       }
-      
+
       input[type="text"]:hover,
       input[type="text"]:focus,
       input[type="url"]:hover,
@@ -174,24 +174,36 @@ export class BizCardEditor extends LitElement {
   }
 
   submit() {
-    // TODO: grab the doc ref and update the changed fields
-    let photoUrl = this.shadowRoot.getElementById('bizphoto').value || this.bizData.photo;
+    let suggestedData = {...this.bizCard.databag};
+    suggestedData.photo = this.shadowRoot.getElementById('bizphoto').value;
+    let gclink = getLink('gclink', this.shadowRoot);
+    let cflink = getLink('cflink', this.shadowRoot);
+    let three52deliverylink = getLink('three52deliverylink', this.shadowRoot);
+    let doordashlink = getLink('doordashlink', this.shadowRoot);
+    let ubereatslink = getLink('ubereatslink', this.shadowRoot);
+    let bitesquadlink = getLink('bitesquadlink', this.shadowRoot);
+    let blurb = getLink('blurb', this.shadowRoot);
 
-    this.doc.update({
-      gclink: getLink('gclink', this.shadowRoot),
-      cflink: getLink('cflink', this.shadowRoot),
-      three52deliverylink: getLink('three52deliverylink', this.shadowRoot),
-      doordashlink: getLink('doordashlink', this.shadowRoot),
-      ubereatslink: getLink('ubereatslink', this.shadowRoot),
-      bitesquadlink: getLink('bitesquadlink', this.shadowRoot),
-      photo: photoUrl,
-      blurb: getLink('blurb', this.shadowRoot)
-    }).then(() => {
-      console.log('successfully updated business');
-      window.location.reload();
+    if (gclink) suggestedData.gclink = gclink;
+    if (cflink) suggestedData.cflink = cflink;
+    if (three52deliverylink) suggestedData.three52deliverylink = three52deliverylink;
+    if (doordashlink) suggestedData.doordashlink = doordashlink;
+    if (ubereatslink) suggestedData.ubereatslink = ubereatslink;
+    if (bitesquadlink) suggestedData.bitesquadlink = bitesquadlink;
+    if (blurb) suggestedData.blurb = blurb;
+
+    this.db.collection('suggestions').add(suggestedData).then(() => {
+
+      this.dispatchEvent(new CustomEvent('toast', {
+        bubbles: true,
+        detail: {
+          message: 'Suggestions noted! If they are accepted, they will take effect within 24 hours.'
+        }
+      }));
+
+      this.dispatchEvent(new CustomEvent('close'));
     });
 
-    this.dispatchEvent(new CustomEvent('close'));
   }
 }
 

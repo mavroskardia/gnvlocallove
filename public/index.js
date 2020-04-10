@@ -49,6 +49,19 @@ class GLL {
       listelt.appendChild(li);
     });
 
+    listelt.addEventListener('toast', this.showToast);
+
+  }
+
+  showToast(e) {
+    let message = e.detail.message;
+    let toastElt = document.getElementById('toast');
+    toastElt.innerText = message;
+    toastElt.classList.add('toasty');
+    window.setTimeout(() => {
+      toastElt.classList.remove('toasty');
+    }, 2000); // amount of time to keep the toast up
+
   }
 
   async search(e) {
