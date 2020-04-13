@@ -49,7 +49,7 @@ class GLL {
       listelt.appendChild(li);
     });
 
-    listelt.addEventListener('toast', this.showToast);
+    document.addEventListener('toast', this.showToast);
 
   }
 
@@ -60,7 +60,7 @@ class GLL {
     toastElt.classList.add('toasty');
     window.setTimeout(() => {
       toastElt.classList.remove('toasty');
-    }, 2000); // amount of time to keep the toast up
+    }, 4500); // amount of time to keep the toast up
 
   }
 

@@ -12,6 +12,7 @@ export class BizCardEditor extends LitElement {
 
   static get styles() {
     return css`
+      h2 { color: var(--midnight); }
       .grid {
         margin: 0 0 calc(var(--base-unit)*2) 0;
         padding: 0 calc(var(--base-unit)*2);
@@ -119,6 +120,7 @@ export class BizCardEditor extends LitElement {
   render() {
     return html`
       <div class="grid">
+        <h2 class="col--full">Suggest additional information or changes</h2>
         <fieldset class="col--full">
           <label for="gclink">Link to gift cards</label>
           <input id="gclink" type="url" placeholder="Link to gift cards (if you know it)" value="${this.bizCard.gclink || ''}">
@@ -159,7 +161,7 @@ export class BizCardEditor extends LitElement {
         </fieldset>
         <fieldset class="col--full">
           <label for="blurb">Anything additional you want people to know about your business?</label>
-          <counting-text id="blurb" maxlength="600" value="${this.bizCard.blurb || ''}"></counting-text>
+          <counting-text id="blurb" maxlength="600" placeholder="Anything up to 600 characters" value="${this.bizCard.blurb || ''}"></counting-text>
         </fieldset>
         <fieldset class="col--full">
           <button @click="${this.submit}" class="btn">Submit Revisions</button>
@@ -174,7 +176,7 @@ export class BizCardEditor extends LitElement {
   }
 
   submit() {
-    let suggestedData = {...this.bizCard.databag};
+    let suggestedData = Object.assign({}, this.bizCard.databag);
     suggestedData.photo = this.shadowRoot.getElementById('bizphoto').value;
     let gclink = getLink('gclink', this.shadowRoot);
     let cflink = getLink('cflink', this.shadowRoot);
@@ -182,7 +184,7 @@ export class BizCardEditor extends LitElement {
     let doordashlink = getLink('doordashlink', this.shadowRoot);
     let ubereatslink = getLink('ubereatslink', this.shadowRoot);
     let bitesquadlink = getLink('bitesquadlink', this.shadowRoot);
-    let blurb = getLink('blurb', this.shadowRoot);
+    let blurb = this.shadowRoot.getElementById('blurb').value;
 
     if (gclink) suggestedData.gclink = gclink;
     if (cflink) suggestedData.cflink = cflink;
@@ -196,6 +198,7 @@ export class BizCardEditor extends LitElement {
 
       this.dispatchEvent(new CustomEvent('toast', {
         bubbles: true,
+        composed: true,
         detail: {
           message: 'Suggestions noted! If they are accepted, they will take effect within 24 hours.'
         }
