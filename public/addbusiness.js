@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
-import {getdb, firebaseConfig} from './globals';
+import {getdb, getLink, firebaseConfig} from './globals';
 import './counting-text.js';
 
 var placeData;
@@ -61,25 +61,6 @@ function clear() {
   document.querySelectorAll('input').forEach(i => i.value = '');
   document.querySelectorAll('counting-text').forEach(ct => ct.value = '');
   document.getElementById('search').focus();
-}
-
-function getLink(id) {
-  let linkText = document.getElementById(id).value;
-
-  // they didn't specify anything, leave it alone
-  if (linkText.length === 0) return '';
-
-  if (linkText.indexOf('://') === -1) {
-    // specified as a relative url, add the schema portion
-    return `https://${linkText}`;
-  }
-
-  if (!linkText.startsWith('http')) {
-    // gave url to something other than a website, no bueno
-    return '[unsafe link]';
-  }
-
-  return linkText;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

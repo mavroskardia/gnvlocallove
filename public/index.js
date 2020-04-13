@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import 'firebase/analytics';
 import {firebaseConfig, getdb} from './globals';
 import './biz-card.js';
+import './biz-card-editor';
 
 class GLL {
 
@@ -22,7 +23,7 @@ class GLL {
 
     let qs = await this.db.collection('businesses').orderBy('name', this.sortOrder).get();
 
-    this.businesses = qs.docs.map(q => q.data());
+    this.businesses = qs.docs.map(q => ({id: q.id, ...q.data()}));
     this.buildList(this.businesses, this.sortOrder);
     this.updateCount(this.businesses.length);
 
@@ -37,24 +38,30 @@ class GLL {
       return;
     }
 
-    listelt.innerHTML = this.businesses.map(b => `
-      <li class="card">
-        <biz-card
-          place_id="${b.place_id}"
-          name="${b.name}"
-          address="${b.address}"
-          icon="${b.icon}"
-          gclink="${b.gclink}"
-          ubereatslink="${b.ubereatslink}"
-          doordashlink="${b.doordashlink}"
-          three52deliverylink="${b.three52deliverylink}"
-          bitesquadlink="${b.bitesquadlink}"
-          cflink="${b.cflink}"
-          blurb="${b.blurb}"
-          website="${b.website}"
-          url="${b.url}">
-        </biz-card>
-      </li>`).join('');
+    listelt.innerHTML = '';
+
+    this.businesses.forEach(b => {
+      let li = document.createElement('li');
+      li.classList.add('card');
+      let bc = document.createElement('biz-card');
+      bc.databag = b;
+      li.appendChild(bc);
+      listelt.appendChild(li);
+    });
+
+    document.addEventListener('toast', this.showToast);
+
+  }
+
+  showToast(e) {
+    let message = e.detail.message;
+    let toastElt = document.getElementById('toast');
+    toastElt.innerText = message;
+    toastElt.classList.add('toasty');
+    window.setTimeout(() => {
+      toastElt.classList.remove('toasty');
+    }, 4500); // amount of time to keep the toast up
+
   }
 
   async search(e) {

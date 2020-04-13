@@ -23,3 +23,24 @@ export function getdb(override) {
   }
   return db;
 }
+
+export function getLink(id, root) {
+  if (!root) root = document;
+
+  let linkText = root.getElementById(id).value;
+
+  // they didn't specify anything, leave it alone
+  if (!linkText || linkText.length === 0) return '';
+
+  if (linkText.indexOf('://') === -1) {
+    // specified as a relative url, add the schema portion
+    return `https://${linkText}`;
+  }
+
+  if (!linkText.startsWith('http')) {
+    // gave url to something other than a website, no bueno
+    return '[unsafe link]';
+  }
+
+  return linkText;
+}

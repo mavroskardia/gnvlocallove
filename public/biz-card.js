@@ -1,4 +1,5 @@
 import {LitElement, html, css} from 'lit-element';
+import './biz-card-editor';
 
 class BizCard extends LitElement {
 
@@ -11,6 +12,21 @@ class BizCard extends LitElement {
     return css`
       :host {
         display: block;
+        position: relative;
+      }
+
+      a.edit {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        transition: all .25s ease-in-out;
+      }
+
+      a.edit:hover {
+        top: 10px;
       }
 
       div.photo {
@@ -95,6 +111,9 @@ class BizCard extends LitElement {
   render() {
     let result = html`
       <div>
+        <a href="#" @click="${this.edit}" class="edit" title="Edit this listing">
+          <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16A16 16 0 0016 0z" fill="#2ECC71"/><path d="M19.328 8a.89.89 0 00-.616.26L8.26 18.713a.889.889 0 00-.26.628v3.771c0 .491.398.889.889.889h3.77a.889.889 0 00.63-.26l10.45-10.452a.889.889 0 000-1.257l-3.77-3.77a.89.89 0 00-.64-.26zm.013 2.146l2.514 2.514-9.563 9.562H9.778v-2.514l9.563-9.562z" fill="#FFF"/></g></svg>
+        </a>
         <div class="photo" style="background-image: url(${this.photo || 'placeholder-image.jpg'})"></div>
         <div class="content">
           <h2>
@@ -120,8 +139,28 @@ class BizCard extends LitElement {
     return result;
   }
 
-  firstUpdated(changedProperties) {
+  edit() {
+    // make this card full screen
+    this.parentElement.classList.add('fullscreen');
+    let bce = document.createElement('biz-card-editor');
+    bce.bizCard = this;
+    bce.addEventListener('close', () => {
+      this.shadowRoot.querySelector('biz-card-editor').remove();
+      this.parentElement.classList.remove('fullscreen');
+    });
+    this.shadowRoot.appendChild(bce);
+  }
 
+  connectedCallback() {
+    super.connectedCallback();
+    Object.assign(this, this.databag);
+  }
+
+  firstUpdated(changedProperties) {
+    // don't try to grab photos when testing locally
+    if (location.hostname === 'localhost') return;
+
+    // build up the Google Maps information to get the place details
     var gnv = new google.maps.LatLng(29.6516, -82.3248);
     let map = new google.maps.Map(document.getElementById('map'), {
       center: gnv,
@@ -129,15 +168,16 @@ class BizCard extends LitElement {
     });
 
     let places = new google.maps.places.PlacesService(map);
+    let retries = 0;
 
-    // TODO: this will stop getting photos after 10 requests
-    places.getDetails({
-      placeId: this.place_id,
-      fields: ['photos'],
-    }, (place, status) => {
+    places.getDetails({ placeId: this.place_id, fields: ['photos'] }, (place, status) => {
       if (place) {
         this.photo = place.photos[0].getUrl({maxWidth:600});
       } else {
+        if (++retries > 3) {
+          // retried too many times, bail
+          return;
+        }
         // wait a second, then try again
         window.setTimeout(() => {
           this.firstUpdated(changedProperties);
@@ -163,6 +203,7 @@ class BizCard extends LitElement {
       bitesquadlink: { type: String },
       three52deliverylink: { type: String },
       cflink: { type: String },
+      databag: { type: Object }
     }
   }
 }
