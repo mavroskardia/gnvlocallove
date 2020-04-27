@@ -7,15 +7,24 @@ class CoachingModal extends LitElement {
     return css`
 
       .coaching-modal {
-        background-color: rgba(0,0,0,0.5);
-        height: 100%;
+        background-color: var(--emerald);
+        height: 50vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
       }
 
-      biz-card {
-        width: 320px;
-        height: 600px;
+      .tooltip {
+        background-color: #fff;
+        padding: 4px;
+        border: solid 1px var(--blue);
       }
 
+      .close-button {
+        position: absolute;
+        top: -1em;
+        right: 0;
+      }
     `;
   }
 
@@ -23,9 +32,13 @@ class CoachingModal extends LitElement {
     return html`
       <div class="coaching-modal">
 
+        <button class="close-button" @click="${this.close}">&times;</button>
+
         <div class="left">
           <span class="tooltip">Change this listing</span>
-          <biz-card></biz-card>
+          <div class="fake-card">
+            <div class="fake-edit-button"></div>
+          </div>
         </div>
 
         <div class="right">
@@ -34,6 +47,10 @@ class CoachingModal extends LitElement {
 
       </div>
     `;
+  }
+
+  close() {
+    this.dispatchEvent(new CustomEvent('close'));
   }
 
 }
