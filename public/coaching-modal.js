@@ -40,12 +40,12 @@ class CoachingModal extends LitElement {
         background-size: fit;
         background-repeat: no-repeat;
         background-position: center;
-        min-height: 400px; 
+        min-height: 400px;
       }
 
-  
+
       @media ( max-width: 950px ) {
-        
+
         .coaching-modal div.content .left-col {
           display: none;
         }
@@ -95,6 +95,24 @@ class CoachingModal extends LitElement {
         cursor: pointer;
       }
 
+      .btn {
+        font-size: 1.6rem;
+        margin-top: var(--base-unit);
+        width: 100%;
+        outline: none;
+        cursor: pointer;
+        color: var(--emerald);
+        padding: var(--base-unit);
+        background: transparent;
+        border: 1px solid var(--emerald);
+        border-radius: calc(var(--base-unit)*2);
+      }
+
+      .btn:hover {
+        color: #fff;
+        background: var(--emerald);
+      }
+
     `;
   }
 
@@ -108,11 +126,8 @@ class CoachingModal extends LitElement {
           <div class="right-col">
             <h3>Release Notes:</h3>
             <p>
-              We're working to squash bugs and release new features. 
+              We're working to squash bugs and release new features.
               Below is an account of the improvements you’ll find in the latest releases.
-            </p>
-            <p>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1q8Qt1EhaVYYRFfTQwcYlKBdtdlIuQQHJfKKyMYg9EcFlxg/viewform" target="_blank">How can we make GNV Loves Local better?</a>
             </p>
             <ul>
               <li>
@@ -122,9 +137,20 @@ class CoachingModal extends LitElement {
                 <b>New feature:</b> Added release notes.
               </li>
               <li>
-                <b>Improved performance:</b> Fixed BG scroll animation. 
+                <b>Improved performance:</b> Fixed BG scroll animation.
               </li>
             </ul>
+            <p>
+              Please
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1q8Qt1EhaVYYRFfTQwcYlKBdtdlIuQQHJfKKyMYg9EcFlxg/viewform" target="_blank">
+                let us know
+              </a>
+              if you have any suggestions on how we can better help our community's
+              local businesses.
+            </p>
+
+            <button class="btn" @click="${this.close}">Got it</button>
+
           </div>
         </div>
       </div>
