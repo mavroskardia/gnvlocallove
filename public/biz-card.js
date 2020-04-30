@@ -35,6 +35,8 @@ class BizCard extends LitElement {
         background-repeat: no-repeat;
         background-size: cover;
         background-position-y: center;
+        border-top-left-radius: var(--base-unit);
+        border-top-right-radius: var(--base-unit);
       }
 
       div.content {

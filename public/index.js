@@ -5,6 +5,7 @@ import 'firebase/analytics';
 import {firebaseConfig, getdb} from './globals';
 import './biz-card.js';
 import './biz-card-editor';
+import './coaching-modal';
 
 class GLL {
 
@@ -14,6 +15,16 @@ class GLL {
     this.db = getdb();
     this.sortOrder = 'asc';
     this.businesses = [];
+  }
+
+  clearFirstTimeCookie() {
+    document.cookie = 'coachedOnSuggestions= ; expires=Thu, 01 Jan 1970 00:00:00 GMT'
+  }
+
+  isFirstTime() {
+    let ift = !document.cookie.split(';').some(c => c.trim().startsWith('coachedOnSuggestions='));
+    console.log(`is first time: ${ift}`);
+    return ift;
   }
 
   async main() {
@@ -26,6 +37,15 @@ class GLL {
     this.businesses = qs.docs.map(q => ({id: q.id, ...q.data()}));
     this.buildList(this.businesses, this.sortOrder);
     this.updateCount(this.businesses.length);
+
+    if (this.isFirstTime()) {
+      let coachElt = document.createElement('coaching-modal');
+      coachElt.addEventListener('close', () => {
+        document.cookie = 'coachedOnSuggestions=true; expires=Fri, 31 Dec 9999 23:59:59 GMT';
+        coachElt.remove();
+      })
+      document.body.appendChild(coachElt);
+    }
 
   }
 

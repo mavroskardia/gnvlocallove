@@ -737,3 +737,13 @@ a.feedback:hover {
 	from { bottom: 4rem; opacity: 1; }
 	to { bottom: 0; opacity: 0; }
 }
+
+/* coaching modal */
+coaching-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 200vh;
+  z-index: 5001;
+}
